@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "758212922386",
+    "project_id": "movietecketapp",
+    "storage_bucket": "movietecketapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:758212922386:android:0598ea0eaec755ed4d5ccb",
+        "android_client_info": {
+          "package_name": "com.example.my_movie_ticket"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2lvgWETAuOs81toxXTQP31j2qMBr-xCA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
