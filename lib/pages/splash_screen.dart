@@ -1,8 +1,6 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:my_movie_ticket/pages/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -29,15 +27,15 @@ class _SplashScreenState extends State<SplashScreen>
     );
     _animationController.forward();
 
-    Timer(
-      const Duration(milliseconds: 2500),
-      () => Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (_) => const LoginScreen(),
-        ),
-      ),
-    );
+    // Timer(
+    //   const Duration(milliseconds: 2500),
+    //   () => Navigator.pushReplacement(
+    //     context,
+    //     MaterialPageRoute(
+    //       builder: (_) => const LoginScreen(),
+    //     ),
+    //   ),
+    // );
 
     super.initState();
   }

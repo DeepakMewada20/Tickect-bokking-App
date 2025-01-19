@@ -2,7 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:my_movie_ticket/pages/login_screen.dart';
+import 'package:get/get.dart';
+import 'package:my_movie_ticket/controllers/auth_controller.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
 import 'package:my_movie_ticket/utils/social_buttons.dart';
 
@@ -14,6 +15,10 @@ class SingupScreen extends StatefulWidget {
 }
 
 class _SingupScreenState extends State<SingupScreen> {
+  final nameController = TextEditingController();
+  final emailControll = TextEditingController();
+  final passwordControll = TextEditingController();
+  final confremPassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -35,11 +40,11 @@ class _SingupScreenState extends State<SingupScreen> {
               ),
               SvgPicture.asset("assets/icons/splash_icon.svg"),
               const SizedBox(
-                height: 30,
+                height: 20,
               ),
               Container(
                 margin:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 padding: const EdgeInsets.all(30),
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -60,7 +65,10 @@ class _SingupScreenState extends State<SingupScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 15),
                       child: TextFormField(
+                        controller: nameController,
                         decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 14, vertical: 8),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
                             borderSide: BorderSide.none,
@@ -76,7 +84,10 @@ class _SingupScreenState extends State<SingupScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 15),
                       child: TextFormField(
+                        controller: emailControll,
                         decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 14, vertical: 8),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
                             borderSide: BorderSide.none,
@@ -92,8 +103,11 @@ class _SingupScreenState extends State<SingupScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 15),
                       child: TextFormField(
+                        controller: passwordControll,
                         obscureText: true,
                         decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 14, vertical: 8),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
                               borderSide: BorderSide.none),
@@ -108,8 +122,11 @@ class _SingupScreenState extends State<SingupScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 15),
                       child: TextFormField(
+                        controller: confremPassword,
                         obscureText: true,
                         decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 14, vertical: 8),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
                               borderSide: BorderSide.none),
@@ -124,7 +141,11 @@ class _SingupScreenState extends State<SingupScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: ()  {
+                           AuthController
+                              .instence
+                              .registorUser(emailControll.text.trim(), passwordControll.text.trim());
+                        },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: MyTheme.splash,
                             foregroundColor: Colors.white,
@@ -134,7 +155,7 @@ class _SingupScreenState extends State<SingupScreen> {
                           child: Padding(
                             padding: EdgeInsets.all(12),
                             child: Text(
-                              "LOGIN",
+                              "SIGNUP",
                               style: TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.w600),
                             ),
@@ -192,8 +213,9 @@ class _SingupScreenState extends State<SingupScreen> {
                           fontWeight: FontWeight.w700),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (_) => const LoginScreen()));
+                          // Navigator.push(context,
+                          //     MaterialPageRoute(builder: (_) => const LoginScreen()));
+                          Get.back();
                         },
                     ),
                     const TextSpan(
