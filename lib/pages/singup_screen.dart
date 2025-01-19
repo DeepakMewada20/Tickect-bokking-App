@@ -15,10 +15,12 @@ class SingupScreen extends StatefulWidget {
 }
 
 class _SingupScreenState extends State<SingupScreen> {
+
   final nameController = TextEditingController();
   final emailControll = TextEditingController();
   final passwordControll = TextEditingController();
   final confremPassword = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -214,7 +216,7 @@ class _SingupScreenState extends State<SingupScreen> {
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
                           // Navigator.push(context,
-                          //     MaterialPageRoute(builder: (_) => const LoginScreen()));
+                          //     MaterialPageRoute(builder: (_) => LoginScreen()));
                           Get.back();
                         },
                     ),
