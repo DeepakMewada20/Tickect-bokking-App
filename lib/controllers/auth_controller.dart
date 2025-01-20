@@ -10,7 +10,7 @@ import 'package:my_movie_ticket/utils/mytheme.dart';
 class AuthController extends GetxController {
   static AuthController instence = Get.find();
   late Rx<User?> _user;
-
+  bool isLoging = false;
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
@@ -23,11 +23,15 @@ class AuthController extends GetxController {
 
   loginRedirect(User? user) {
     Timer(
-      const Duration(seconds: 2),
+      Duration(seconds: isLoging ? 0 : 2),
       () {
         if (user == null) {
+          isLoging = false;
+          update();
           Get.offAll(() => const LoginScreen());
         } else {
+          isLoging = true;
+          update();
           Get.offAll(() => const HomeScreen());
         }
       },
@@ -36,6 +40,8 @@ class AuthController extends GetxController {
 
   void registorUser(email, password) async {
     try {
+      isLoging = true;
+      update();
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
     } on FirebaseAuthException catch (e) {
@@ -43,10 +49,20 @@ class AuthController extends GetxController {
     }
   }
 
+  void login(email, password) async {
+    try {
+      isLoging = true;
+      update();
+      await auth.signInWithEmailAndPassword(email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      getErrorSnackeBar("login fail", e.message);
+    }
+  }
+
   getErrorSnackeBar(String massage, _) {
     Get.snackbar(
       "Error",
-      "$massage\n $_",
+      "$massage\n ${_}",
       snackPosition: SnackPosition.BOTTOM,
       backgroundColor: MyTheme.redBorder,
       borderRadius: 10,

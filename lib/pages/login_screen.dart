@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:my_movie_ticket/controllers/auth_controller.dart';
+import 'package:my_movie_ticket/controllers/input_validators.dart';
 import 'package:my_movie_ticket/pages/singup_screen.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
 import 'package:my_movie_ticket/utils/social_buttons.dart';
@@ -15,6 +17,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -78,6 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 15),
                       child: TextFormField(
+                        controller: emailController,
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.symmetric(
                               vertical: 8.0, horizontal: 8.0),
@@ -85,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(8),
                             borderSide: BorderSide.none,
                           ),
-                          hintText: "Username",
+                          hintText: "Email",
                           hintStyle: const TextStyle(
                               color: Color.fromARGB(145, 0, 0, 0)),
                           fillColor: MyTheme.greyColor,
@@ -96,6 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 15),
                       child: TextFormField(
+                        controller: passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.symmetric(
@@ -128,7 +135,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 5),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          if (InputValidators.validateFiled(
+                              "Email", emailController.text.trim())) {
+                            AuthController.instence.login(
+                                emailController.text.trim(),
+                                passwordController.text.trim());
+                          }
+                        },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: MyTheme.splash,
                             foregroundColor: Colors.white,
