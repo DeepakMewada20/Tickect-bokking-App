@@ -26,9 +26,9 @@ class AuthController extends GetxController {
       const Duration(seconds: 2),
       () {
         if (user == null) {
-          Get.offAll(const LoginScreen());
+          Get.offAll(() => const LoginScreen());
         } else {
-          Get.offAll(const HomeScreen());
+          Get.offAll(() => const HomeScreen());
         }
       },
     );
@@ -39,14 +39,14 @@ class AuthController extends GetxController {
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
     } on FirebaseAuthException catch (e) {
-      getErrorSnackeBar("Acount creation fail", e);
+      getErrorSnackeBar("Acount creation fail", e.message);
     }
   }
 
   getErrorSnackeBar(String massage, _) {
     Get.snackbar(
       "Error",
-      "$massage\n ${_.massage}",
+      "$massage\n $_",
       snackPosition: SnackPosition.BOTTOM,
       backgroundColor: MyTheme.redBorder,
       borderRadius: 10,
@@ -57,5 +57,9 @@ class AuthController extends GetxController {
         right: 10,
       ),
     );
+  }
+
+  void signOut() async {
+    await auth.signOut();
   }
 }

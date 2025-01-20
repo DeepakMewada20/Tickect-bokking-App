@@ -202,7 +202,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           //     builder: (_) => const SingupScreen(),
                           //   ),
                           // );
-                          Get.to((const SingupScreen()));
+                          Get.to(const SingupScreen());
                         },
                     ),
                     const TextSpan(

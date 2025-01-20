@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:my_movie_ticket/controllers/auth_controller.dart';
+import 'package:my_movie_ticket/controllers/input_validators.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
 import 'package:my_movie_ticket/utils/social_buttons.dart';
 
@@ -15,11 +16,10 @@ class SingupScreen extends StatefulWidget {
 }
 
 class _SingupScreenState extends State<SingupScreen> {
-
   final nameController = TextEditingController();
   final emailControll = TextEditingController();
   final passwordControll = TextEditingController();
-  final confremPassword = TextEditingController();
+  final confremPasswordcontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +124,7 @@ class _SingupScreenState extends State<SingupScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 15),
                       child: TextFormField(
-                        controller: confremPassword,
+                        controller: confremPasswordcontroller,
                         obscureText: true,
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.symmetric(
@@ -143,10 +143,19 @@ class _SingupScreenState extends State<SingupScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: ElevatedButton(
-                        onPressed: ()  {
-                           AuthController
-                              .instence
-                              .registorUser(emailControll.text.trim(), passwordControll.text.trim());
+                        onPressed: () {
+                          if (InputValidators.validateFiled(
+                                  "Name", nameController.text.trim()) &&
+                              InputValidators.validateFiled(
+                                  "Email", emailControll.text.trim())) {
+                            if (InputValidators.validatePassword(
+                                passwordControll.text,
+                                confremPasswordcontroller.text)) {
+                              AuthController.instence.registorUser(
+                                  emailControll.text.trim(),
+                                  passwordControll.text.trim());
+                            }
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: MyTheme.splash,
