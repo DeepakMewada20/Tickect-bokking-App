@@ -62,7 +62,7 @@ class AuthController extends GetxController {
   getErrorSnackeBar(String massage, _) {
     Get.snackbar(
       "Error",
-      "$massage\n ${_}",
+      "$massage\n $_",
       snackPosition: SnackPosition.BOTTOM,
       backgroundColor: MyTheme.redBorder,
       borderRadius: 10,
