@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:my_movie_ticket/pages/home_screen.dart';
 import 'package:my_movie_ticket/pages/login_screen.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
@@ -56,6 +57,32 @@ class AuthController extends GetxController {
       await auth.signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
       getErrorSnackeBar("login fail", e.message);
+    }
+  }
+
+  void googleLogin() async {
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+    isLoging = true;
+    update();
+    try {
+      googleSignIn.disconnect();
+    } catch (e) {
+      getErrorSnackeBar("No selected account", e);
+    }
+    try {
+      final GoogleSignInAccount? googleSignInAccount =
+          await googleSignIn.signIn();
+      if (googleSignInAccount != null) {
+        final GoogleSignInAuthentication googleAuth =
+            await googleSignInAccount.authentication;
+        final crendentials = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
+        await auth.signInWithCredential(crendentials);
+      }
+    } on FirebaseAuthException catch (e) {
+      getErrorSnackeBar("Google auth fail!", e);
     }
   }
 

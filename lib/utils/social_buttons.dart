@@ -21,7 +21,7 @@ class SocialButtons extends StatelessWidget {
               side: const BorderSide(color: MyTheme.redBorder, width: 0.2),
             ),
             child: InkWell(
-              onTap: () {},
+              onTap: onGoogleClick,
               borderRadius: BorderRadius.circular(5),
               child: Padding(
                 padding:

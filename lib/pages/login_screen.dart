@@ -189,8 +189,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: SocialButtons(
-                        onGoogleClick: () {},
-                        onFacebookClick: () {},
+                        onGoogleClick: () {
+                          AuthController.instence.googleLogin();
+                        },
+                        onFacebookClick: () {
+                          AuthController.instence.googleLogin();
+                        },
                       ),
                     ),
                   ],

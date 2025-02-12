@@ -203,7 +203,9 @@ class _SingupScreenState extends State<SingupScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: SocialButtons(
-                        onGoogleClick: () {},
+                        onGoogleClick: () {
+                          AuthController.instence.googleLogin();
+                        },
                         onFacebookClick: () {},
                       ),
                     ),
