@@ -12,6 +12,7 @@ class AuthController extends GetxController {
   static AuthController instence = Get.find();
   late Rx<User?> _user;
   bool isLoging = false;
+  User? get user => _user.value;
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   @override

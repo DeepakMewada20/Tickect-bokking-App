@@ -41,6 +41,7 @@ dependencies:
   firebase_core: ^3.9.0
   get: ^4.6.6
   google_sign_in: ^6.2.2
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +70,13 @@ flutter:
     - assets/icons/splash_icon.svg
     - assets/icons/google.svg
     - assets/icons/facebook.svg
+    - assets/images/slider_banner.png
+    - assets/icons/film.svg
+    - assets/icons/spotlights.svg
+    - assets/icons/theater_masks.svg
+    - assets/icons/running.svg
+    - assets/icons/flag.svg
+    - assets/icons/pyramid.svg 
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
