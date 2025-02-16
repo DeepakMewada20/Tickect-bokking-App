@@ -14,7 +14,7 @@ List<AdSliderModal> sliderData = [
       redirectUrl: Constants.baseApiUrl),
 ];
 
-List<MenuModal> menus = [
+List<MenuModal> manus = [
   const MenuModal(name: "Movie", assets: "assets/icons/film.svg"),
   const MenuModal(name: "Events", assets: "assets/icons/spotlights.svg"),
   const MenuModal(name: "Plays", assets: "assets/icons/theater_masks.svg"),
@@ -24,10 +24,10 @@ List<MenuModal> menus = [
 ];
 
 List<String> citys = [
-    "Indore",
-    "New Delhi",
-    "Banglore",
-    "Kolkata",
-    "Chennai",
-    "Lucknow",
+  "Indore",
+  "New Delhi",
+  "Banglore",
+  "Kolkata",
+  "Chennai",
+  "Lucknow",
 ];
