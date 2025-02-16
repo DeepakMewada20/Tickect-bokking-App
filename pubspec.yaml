@@ -76,7 +76,13 @@ flutter:
     - assets/icons/theater_masks.svg
     - assets/icons/running.svg
     - assets/icons/flag.svg
-    - assets/icons/pyramid.svg 
+    - assets/icons/pyramid.svg
+    - assets/movie/gabbar.png
+    - assets/movie/movie1.png
+    - assets/movie/movie2.png
+    - assets/movie/movie3.png
+    - assets/movie/movie4.png
+    - assets/movie/pizza.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -6,6 +6,7 @@ import 'package:my_movie_ticket/utils/constants.dart';
 import 'package:my_movie_ticket/utils/custom_slider.dart';
 import 'package:my_movie_ticket/utils/dummy_data.dart';
 import 'package:my_movie_ticket/utils/manu_item.dart';
+import 'package:my_movie_ticket/utils/movies_item.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -131,6 +132,20 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             const ManuItem(),
+            const Padding(
+              padding: EdgeInsets.only(
+                left: 20,
+                top: 15,
+              ),
+              child: Text(
+                "RECOMANDDED MOVIES",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500),
+              ),
+            ),
+            MoviesItem(),
           ],
         ),
       ),

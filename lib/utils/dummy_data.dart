@@ -1,5 +1,6 @@
 import 'package:my_movie_ticket/modal/ad_slider_modal.dart';
 import 'package:my_movie_ticket/modal/menu_modal.dart';
+import 'package:my_movie_ticket/modal/movie_modal.dart';
 import 'package:my_movie_ticket/utils/constants.dart';
 
 List<AdSliderModal> sliderData = [
@@ -21,6 +22,37 @@ List<MenuModal> manus = [
   const MenuModal(name: "Sports", assets: "assets/icons/running.svg"),
   const MenuModal(name: "Activity", assets: "assets/icons/flag.svg"),
   const MenuModal(name: "Monum", assets: "assets/icons/pyramid.svg"),
+];
+
+List<MovieModel> movies = [
+  MovieModel(
+    title: "Bigil",
+    description: "description",
+    actors: ["actor a", "actor b"],
+    like: 84,
+    bannerUrl: "assets/movie/movie1.png",
+  ),
+  MovieModel(
+    title: "Kaithi",
+    description: "description",
+    actors: ["actor a", "actor b"],
+    like: 84,
+    bannerUrl: "assets/movie/movie2.png",
+  ),
+  MovieModel(
+    title: "Asuran",
+    description: "description",
+    actors: ["actor a", "actor b"],
+    like: 84,
+    bannerUrl: "assets/movie/movie3.png",
+  ),
+  MovieModel(
+    title: "Sarkar",
+    description: "description",
+    actors: ["actor a", "actor b"],
+    like: 84,
+    bannerUrl: "assets/movie/movie4.png",
+  ),
 ];
 
 List<String> citys = [
