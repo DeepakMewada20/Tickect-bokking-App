@@ -145,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontWeight: FontWeight.w500),
               ),
             ),
-            MoviesItem(),
+            const MoviesItem(),
           ],
         ),
       ),

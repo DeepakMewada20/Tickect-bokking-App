@@ -31,7 +31,7 @@ class ManuItem extends StatelessWidget {
                       height: 40,
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
                     Text(
                       manus[i].name,
