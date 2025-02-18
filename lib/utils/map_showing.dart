@@ -10,18 +10,20 @@ class MapShowing extends StatefulWidget {
 }
 
 class _MapShowingState extends State<MapShowing> {
-  static const LatLng _pGooglePlex = LatLng(22.750418, 75.83542);
+  static const LatLng _pGooglePlex = LatLng(22.748133, 75.835927);
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Container(
-      //padding: EdgeInsets.only(left: 20, right: 20),
+      padding: const EdgeInsets.only(left: 20, right: 20),
       alignment: Alignment.center,
       height: size.height * 0.25,
       width: size.width,
-      color: Colors.blue,
-      child: GoogleMap(
-        initialCameraPosition: CameraPosition(target: _pGooglePlex,zoom: 15),
+      //color: Colors.blue,
+      child: const SizedBox.expand(
+        child: GoogleMap(
+          initialCameraPosition: CameraPosition(target: _pGooglePlex, zoom: 15),
+        ),
       ),
     );
   }
