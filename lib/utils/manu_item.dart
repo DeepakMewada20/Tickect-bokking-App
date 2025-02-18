@@ -10,7 +10,7 @@ class ManuItem extends StatelessWidget {
     //final topMargin=size.height*0.07;
     return Container(
       margin: EdgeInsets.only(top: size.height * 0.017),
-      height: size.height * 0.1,
+      height: size.height * 0.08,
       width: size.width,
       //color: Colors.red,
       child: ListView.builder(

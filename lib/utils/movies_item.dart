@@ -8,7 +8,7 @@ class MoviesItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return SizedBox(
-      height: size.height * 0.25,
+      height: size.height * 0.24,
       width: size.width,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,

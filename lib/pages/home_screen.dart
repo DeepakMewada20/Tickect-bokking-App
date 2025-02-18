@@ -1,10 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_movie_ticket/controllers/auth_controller.dart';
 import 'package:my_movie_ticket/utils/constants.dart';
 import 'package:my_movie_ticket/utils/custom_slider.dart';
 import 'package:my_movie_ticket/utils/dummy_data.dart';
+import 'package:my_movie_ticket/utils/events_item.dart';
 import 'package:my_movie_ticket/utils/manu_item.dart';
 import 'package:my_movie_ticket/utils/map_showing.dart';
 import 'package:my_movie_ticket/utils/movies_item.dart';
@@ -138,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const Padding(
                 padding: EdgeInsets.only(
                   left: 20,
-                  top: 5,
+                  top: 17,
                 ),
                 child: Text(
                   "RECOMANDDED MOVIES",
@@ -150,7 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const MoviesItem(),
               Padding(
-                padding: const EdgeInsets.only(left: 20, right: 15),
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -171,6 +173,42 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               const MapShowing(),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 15, top: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        SvgPicture.asset(
+                          "assets/icons/spotlights.svg",
+                          color: Colors.black.withAlpha(200),
+                          width: 20,
+                          height: 20,
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          "events".toUpperCase(),
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        "View All",
+                        style: TextStyle(color: MyTheme.splash, fontSize: 15),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              EventsItem(),
             ],
           ),
         ),

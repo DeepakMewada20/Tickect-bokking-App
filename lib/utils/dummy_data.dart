@@ -1,4 +1,5 @@
 import 'package:my_movie_ticket/modal/ad_slider_modal.dart';
+import 'package:my_movie_ticket/modal/event_model.dart';
 import 'package:my_movie_ticket/modal/menu_modal.dart';
 import 'package:my_movie_ticket/modal/movie_modal.dart';
 import 'package:my_movie_ticket/utils/constants.dart';
@@ -54,6 +55,15 @@ List<MovieModel> movies = [
     bannerUrl: "assets/movie/movie4.png",
   ),
 ];
+
+List<EventModel> events = [
+  EventModel(title: "dances", description: "description", bannerUrl: "assets/events/event1.png", date: "date"),
+  EventModel(title: "shindigs", description: "description", bannerUrl: "assets/events/event2.png", date: "date"),
+  EventModel(title: "functions", description: "description", bannerUrl: "assets/events/event3.png", date: "date"),
+  EventModel(title: "affairs", description: "description", bannerUrl: "assets/events/event4.png", date: "date"),
+  EventModel(title: "shindigs", description: "description", bannerUrl: "assets/events/event2.png", date: "date"),
+];
+
 
 List<String> citys = [
   "Indore",

@@ -84,6 +84,10 @@ flutter:
     - assets/movie/movie3.png
     - assets/movie/movie4.png
     - assets/movie/pizza.png
+    - assets/events/event1.png
+    - assets/events/event2.png
+    - assets/events/event3.png
+    - assets/events/event4.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
