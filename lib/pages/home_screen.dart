@@ -6,6 +6,7 @@ import 'package:my_movie_ticket/utils/constants.dart';
 import 'package:my_movie_ticket/utils/custom_slider.dart';
 import 'package:my_movie_ticket/utils/dummy_data.dart';
 import 'package:my_movie_ticket/utils/manu_item.dart';
+import 'package:my_movie_ticket/utils/map_showing.dart';
 import 'package:my_movie_ticket/utils/movies_item.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
 
@@ -103,50 +104,75 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      body: Container(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              alignment: Alignment.topLeft,
-              height: size.height * 0.2,
-              width: size.width,
-              color: Colors.red,
-              child: PageView.builder(
-                  itemCount: sliderData.length,
-                  itemBuilder: (context, i) {
-                    return CustomSlider(
-                      index: i,
-                    );
-                  }),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(left: 20, top: 25),
-              child: Text(
-                "SEAT CETEGORIES",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.only(bottom: 20),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                alignment: Alignment.topLeft,
+                height: size.height * 0.2,
+                width: size.width,
+                color: Colors.red,
+                child: PageView.builder(
+                    itemCount: sliderData.length,
+                    itemBuilder: (context, i) {
+                      return CustomSlider(
+                        index: i,
+                      );
+                    }),
               ),
-            ),
-            const ManuItem(),
-            const Padding(
-              padding: EdgeInsets.only(
-                left: 20,
-                top: 15,
+              const Padding(
+                padding: EdgeInsets.only(left: 20, top: 25),
+                child: Text(
+                  "SEAT CETEGORIES",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500),
+                ),
               ),
-              child: Text(
-                "RECOMANDDED MOVIES",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500),
+              const ManuItem(),
+              const Padding(
+                padding: EdgeInsets.only(
+                  left: 20,
+                  top: 5,
+                ),
+                child: Text(
+                  "RECOMANDDED MOVIES",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500),
+                ),
               ),
-            ),
-            const MoviesItem(),
-          ],
+              const MoviesItem(),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "NEARBY THEATERS",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    TextButton(
+                        onPressed: () {},
+                        child: const Text(
+                          "View All",
+                          style: TextStyle(color: MyTheme.splash, fontSize: 15),
+                        ))
+                  ],
+                ),
+              ),
+              const MapShowing(),
+            ],
+          ),
         ),
       ),
     );

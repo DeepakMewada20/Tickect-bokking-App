@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:my_movie_ticket/utils/dummy_data.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
@@ -8,8 +7,8 @@ class MoviesItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    return Container(
-      height: size.height * 0.3,
+    return SizedBox(
+      height: size.height * 0.25,
       width: size.width,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
@@ -37,12 +36,12 @@ class MoviesItem extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     Text(
                       movies[i].title,
-                      style: const TextStyle(color: Colors.black, fontSize: 15),
+                      style: const TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     Row(
                       children: [
@@ -50,11 +49,11 @@ class MoviesItem extends StatelessWidget {
                           Icons.favorite,
                           color: MyTheme.splash,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 4,
                         ),
                         Text(
-                          "${movies[i].like}",
+                          "${movies[i].like}%",
                           style: const TextStyle(
                               color: Colors.black, fontSize: 13),
                         ),

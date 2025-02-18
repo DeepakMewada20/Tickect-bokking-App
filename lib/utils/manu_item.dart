@@ -9,7 +9,7 @@ class ManuItem extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
     //final topMargin=size.height*0.07;
     return Container(
-      margin: EdgeInsets.only(top: size.height * 0.025),
+      margin: EdgeInsets.only(top: size.height * 0.017),
       height: size.height * 0.1,
       width: size.width,
       //color: Colors.red,
