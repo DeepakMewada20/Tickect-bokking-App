@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_movie_ticket/utils/dummy_data.dart';
+import 'package:my_movie_ticket/modal/event_model.dart';
 
 class EventsItem extends StatelessWidget {
-  const EventsItem({super.key});
+  final List<EventModel> events;
+  const EventsItem({super.key, required this.events});
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;

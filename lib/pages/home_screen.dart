@@ -2,7 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:my_movie_ticket/controllers/auth_controller.dart';
+import 'package:my_movie_ticket/pages/profile_page.dart';
 import 'package:my_movie_ticket/utils/constants.dart';
 import 'package:my_movie_ticket/utils/custom_slider.dart';
 import 'package:my_movie_ticket/utils/dummy_data.dart';
@@ -45,13 +47,18 @@ class _HomeScreenState extends State<HomeScreen> {
               top: 5,
               bottom: 5,
             ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(30),
-              child: CachedNetworkImage(
-                imageUrl: picUrl,
-                width: 20,
-                height: 20,
-                fit: BoxFit.cover,
+            child: GestureDetector(
+              onTap: () {
+                Get.to(const ProfilePage());
+              },
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: CachedNetworkImage(
+                  imageUrl: picUrl,
+                  width: 20,
+                  height: 20,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
@@ -208,7 +215,45 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              EventsItem(),
+              EventsItem(
+                events: events,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 15, top: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        SvgPicture.asset(
+                          "assets/icons/theater_masks.svg",
+                          color: Colors.black.withAlpha(200),
+                          width: 20,
+                          height: 20,
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          "plays".toUpperCase(),
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        "View All",
+                        style: TextStyle(color: MyTheme.splash, fontSize: 15),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              EventsItem(events: plays),
             ],
           ),
         ),

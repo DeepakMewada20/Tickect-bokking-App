@@ -57,13 +57,60 @@ List<MovieModel> movies = [
 ];
 
 List<EventModel> events = [
-  EventModel(title: "dances", description: "description", bannerUrl: "assets/events/event1.png", date: "date"),
-  EventModel(title: "shindigs", description: "description", bannerUrl: "assets/events/event2.png", date: "date"),
-  EventModel(title: "functions", description: "description", bannerUrl: "assets/events/event3.png", date: "date"),
-  EventModel(title: "affairs", description: "description", bannerUrl: "assets/events/event4.png", date: "date"),
-  EventModel(title: "shindigs", description: "description", bannerUrl: "assets/events/event2.png", date: "date"),
+  EventModel(
+      title: "dances",
+      description: "description",
+      bannerUrl: "assets/events/event1.png",
+      date: "date"),
+  EventModel(
+      title: "shindigs",
+      description: "description",
+      bannerUrl: "assets/events/event2.png",
+      date: "date"),
+  EventModel(
+      title: "functions",
+      description: "description",
+      bannerUrl: "assets/events/event3.png",
+      date: "date"),
+  EventModel(
+      title: "affairs",
+      description: "description",
+      bannerUrl: "assets/events/event4.png",
+      date: "date"),
+  EventModel(
+      title: "shindigs",
+      description: "description",
+      bannerUrl: "assets/events/event2.png",
+      date: "date"),
 ];
 
+List<EventModel> plays = [
+  EventModel(
+      title: "dances",
+      description: "description",
+      bannerUrl: "assets/plays/play1.png",
+      date: "date"),
+  EventModel(
+      title: "shindigs",
+      description: "description",
+      bannerUrl: "assets/plays/play2.png",
+      date: "date"),
+  EventModel(
+      title: "functions",
+      description: "description",
+      bannerUrl: "assets/plays/play3.png",
+      date: "date"),
+  EventModel(
+      title: "affairs",
+      description: "description",
+      bannerUrl: "assets/plays/play4.png",
+      date: "date"),
+  EventModel(
+      title: "shindigs",
+      description: "description",
+      bannerUrl: "assets/plays/play2.png",
+      date: "date"),
+];
 
 List<String> citys = [
   "Indore",
