@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -20,9 +22,15 @@ class _MapShowingState extends State<MapShowing> {
       height: size.height * 0.25,
       width: size.width,
       //color: Colors.blue,
-      child: const SizedBox.expand(
+      child: SizedBox.expand(
         child: GoogleMap(
-          initialCameraPosition: CameraPosition(target: _pGooglePlex, zoom: 15),
+          mapType: MapType.normal,
+          gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+            Factory<OneSequenceGestureRecognizer>(
+              () => EagerGestureRecognizer(),
+            ),
+          },
+          initialCameraPosition: const CameraPosition(target: _pGooglePlex, zoom: 15),
         ),
       ),
     );

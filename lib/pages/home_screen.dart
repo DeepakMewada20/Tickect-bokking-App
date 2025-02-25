@@ -66,9 +66,9 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             //mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
-                "name",
-                style: TextStyle(color: Colors.white),
+              Text(
+                AuthController.instence.user!.displayName ?? "Name",
+                style: const TextStyle(color: Colors.white),
               ),
               DropdownButton<String>(
                 value: cityName,

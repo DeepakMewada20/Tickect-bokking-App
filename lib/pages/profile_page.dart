@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:my_movie_ticket/controllers/profile_controller.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
 
 import '../controllers/auth_controller.dart';
@@ -67,7 +68,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           horizontal: 20,
                         ),
                         child: TextFormField(
-                          readOnly: true,
+                          readOnly: ProfileController.instance.isEdit.value,
                           decoration: InputDecoration(
                             border: const OutlineInputBorder(
                                 borderSide: BorderSide.none),
@@ -88,7 +89,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                             suffixIcon: GestureDetector(
                               onTap: () {
-                                print("edit");
+                                ProfileController.instance.toggleEdit();
                               },
                               child: const Padding(
                                 padding: EdgeInsets.all(0),
@@ -150,40 +151,42 @@ class _ProfilePageState extends State<ProfilePage> {
                         style: TextStyle(color: Colors.black, fontSize: 16),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                      ),
-                      child: TextFormField(
-                        readOnly: true,
-                        decoration: InputDecoration(
-                          border: const OutlineInputBorder(
-                              borderSide: BorderSide.none),
-                          prefixIcon: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Container(
-                              height: 40,
-                              width: 40,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                color: const Color(0xFFE4EDFF),
-                              ),
-                              child: const Icon(
-                                Icons.phone_android_outlined,
-                                color: Color(0xFF4C7EFF),
+                    Obx(
+                      () => Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                        ),
+                        child: TextFormField(
+                          readOnly: ProfileController.instance.isEdit.value,
+                          decoration: InputDecoration(
+                            border: const OutlineInputBorder(
+                                borderSide: BorderSide.none),
+                            prefixIcon: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Container(
+                                height: 40,
+                                width: 40,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: const Color(0xFFE4EDFF),
+                                ),
+                                child: const Icon(
+                                  Icons.phone_android_outlined,
+                                  color: Color(0xFF4C7EFF),
+                                ),
                               ),
                             ),
-                          ),
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                              print("edit");
-                            },
-                            child: const Padding(
-                              padding: EdgeInsets.all(0),
-                              child: Icon(
-                                Icons.edit_outlined,
-                                color: Color(0xFF4C7EFF),
-                                size: 27,
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                ProfileController.instance.toggleEdit();
+                              },
+                              child: const Padding(
+                                padding: EdgeInsets.all(0),
+                                child: Icon(
+                                  Icons.edit_outlined,
+                                  color: Color(0xFF4C7EFF),
+                                  size: 27,
+                                ),
                               ),
                             ),
                           ),
@@ -204,34 +207,34 @@ class _ProfilePageState extends State<ProfilePage> {
                     Padding(
                       padding: const EdgeInsets.only(left: 20),
                       child: ListTile(
-                        leading: Icon(
+                        leading: const Icon(
                           Icons.privacy_tip_outlined,
                           size: 22,
                         ),
-                        title: Text("privacy polisy"),
+                        title:const Text("privacy polisy"),
                         onTap: () {},
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 20),
                       child: ListTile(
-                        leading: Icon(
+                        leading: const Icon(
                           Icons.share_outlined,
                           size: 22,
                         ),
-                        title: Text("Share"),
+                        title:const Text("Share"),
                         onTap: () {},
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 20),
                       child: ListTile(
-                        leading: Icon(
+                        leading:const Icon(
                           Icons.logout,
                           size: 22,
                           color: Colors.red,
                         ),
-                        title: Text(
+                        title: const Text(
                           "Loge Out",
                           style: TextStyle(color: Colors.red),
                         ),
