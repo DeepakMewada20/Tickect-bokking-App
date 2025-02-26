@@ -68,6 +68,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           horizontal: 20,
                         ),
                         child: TextFormField(
+                          
                           readOnly: ProfileController.instance.isEdit.value,
                           decoration: InputDecoration(
                             border: const OutlineInputBorder(

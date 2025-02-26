@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:my_movie_ticket/controllers/auth_controller.dart';
 import 'package:my_movie_ticket/pages/profile_page.dart';
+import 'package:my_movie_ticket/pages/select_location_screen.dart';
 import 'package:my_movie_ticket/utils/constants.dart';
 import 'package:my_movie_ticket/utils/custom_slider.dart';
 import 'package:my_movie_ticket/utils/dummy_data.dart';
@@ -70,28 +71,50 @@ class _HomeScreenState extends State<HomeScreen> {
                 AuthController.instence.user!.displayName ?? "Name",
                 style: const TextStyle(color: Colors.white),
               ),
-              DropdownButton<String>(
-                value: cityName,
-                dropdownColor: MyTheme.appBarColor,
-                isDense: true,
-                underline: const SizedBox(),
-                icon: Icon(
-                  Icons.keyboard_arrow_down_sharp,
-                  color: Colors.white.withValues(alpha: 0.7),
-                ),
-                items: citys
-                    .map(
-                      (e) => DropdownMenuItem<String>(
-                        value: e,
-                        child: Text(
-                          e,
-                          style: const TextStyle(color: Colors.white),
-                        ),
-                      ),
+              GestureDetector(
+                onTap: () {
+                  Get.to(() => const SelectLocationScreen());
+                },
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "City",
+                      style: TextStyle(
+                          color: Colors.white.withAlpha(150),
+                          fontSize: 17,
+                          inherit: true),
+                    ),
+                    Icon(
+                      Icons.keyboard_arrow_down_rounded,
+                      color: Colors.white.withAlpha(150),
+                      size: 23,
                     )
-                    .toList(),
-                onChanged: (st) => setCityName(st!),
-              ),
+                  ],
+                ),
+              )
+              // DropdownButton<String>(
+              //   value: cityName,
+              //   dropdownColor: MyTheme.appBarColor,
+              //   isDense: true,
+              //   underline: const SizedBox(),
+              //   icon: Icon(
+              //     Icons.keyboard_arrow_down_sharp,
+              //     color: Colors.white.withValues(alpha: 0.7),
+              //   ),
+              //   items: citys
+              //       .map(
+              //         (e) => DropdownMenuItem<String>(
+              //           value: e,
+              //           child: Text(
+              //             e,
+              //             style: const TextStyle(color: Colors.white),
+              //           ),
+              //         ),
+              //       )
+              //       .toList(),
+              //   onChanged: (st) => setCityName(st!),
+              // ),
             ],
           ),
           actions: [
