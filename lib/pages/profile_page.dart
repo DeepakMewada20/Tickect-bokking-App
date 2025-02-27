@@ -68,7 +68,6 @@ class _ProfilePageState extends State<ProfilePage> {
                           horizontal: 20,
                         ),
                         child: TextFormField(
-                          
                           readOnly: ProfileController.instance.isEdit.value,
                           decoration: InputDecoration(
                             border: const OutlineInputBorder(
@@ -212,7 +211,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           Icons.privacy_tip_outlined,
                           size: 22,
                         ),
-                        title:const Text("privacy polisy"),
+                        title: const Text("privacy polisy"),
                         onTap: () {},
                       ),
                     ),
@@ -223,14 +222,14 @@ class _ProfilePageState extends State<ProfilePage> {
                           Icons.share_outlined,
                           size: 22,
                         ),
-                        title:const Text("Share"),
+                        title: const Text("Share"),
                         onTap: () {},
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 20),
                       child: ListTile(
-                        leading:const Icon(
+                        leading: const Icon(
                           Icons.logout,
                           size: 22,
                           color: Colors.red,
@@ -239,7 +238,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           "Loge Out",
                           style: TextStyle(color: Colors.red),
                         ),
-                        onTap: () {},
+                        onTap: () {
+                          AuthController.instence.signOut();
+                        },
                       ),
                     ),
                   ],
