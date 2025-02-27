@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-//import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:my_movie_ticket/pages/home_screen.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
+import 'package:my_movie_ticket/controllers/location_controller.dart';
 
 class SelectLocationScreen extends StatefulWidget {
   const SelectLocationScreen({super.key});
@@ -12,10 +13,19 @@ class SelectLocationScreen extends StatefulWidget {
 }
 
 class _SelectLocationScreenState extends State<SelectLocationScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Get.put(LocationController());
+  }
+
   Widget myLocationWidget = Padding(
     padding: const EdgeInsets.only(top: 20),
     child: GestureDetector(
-      onTap: () {},
+      onTap: () async {
+        await LocationController.instence.getLocation();
+        Get.offAll(() => const HomeScreen());
+      },
       child: Container(
         decoration: BoxDecoration(
           color: MyTheme.greyColor,
@@ -66,10 +76,10 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
   }
 
   final List<String> citys = [
-    "Indore",
     "kolkata",
     "Bhopal",
     "Hedradad",
+    "Indore",
     "dihli"
   ];
   Widget sagesedCitys(String city) {
@@ -108,7 +118,8 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
         elevation: 0,
       ),
       body: LayoutBuilder(
-        builder: (context, constraints) => SizedBox(
+        builder: (context, constraints) => 
+        SizedBox(
           height: size.height,
           width: size.width,
           child: Padding(
@@ -129,7 +140,12 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
                       crossAxisSpacing: 20,
                       childAspectRatio: 2,
                     ),
-                    itemBuilder: (_, index) => sagesedCitys(citys[index]),
+                    itemBuilder: (_, index) => GestureDetector(
+                        onTap: () {
+                          LocationController.instence.setCity(citys[index]);
+                          Get.offAll(() => HomeScreen());
+                        },
+                        child: sagesedCitys(citys[index])),
                   ),
                 ),
                 Padding(
@@ -140,7 +156,6 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
                       hintText: "search City",
                       fillColor: MyTheme.greyColor,
                       filled: true,
-                 
                       prefixIcon: const Icon(
                         Icons.search_rounded,
                         color: Colors.black45,

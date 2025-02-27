@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:my_movie_ticket/controllers/auth_controller.dart';
+import 'package:my_movie_ticket/controllers/location_controller.dart';
 import 'package:my_movie_ticket/pages/profile_page.dart';
 import 'package:my_movie_ticket/pages/select_location_screen.dart';
 import 'package:my_movie_ticket/utils/constants.dart';
@@ -23,13 +24,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String cityName = citys[0];
-  void setCityName(String ct) {
-    setState(() {
-      cityName = ct;
-    });
+   @override
+  void initState() {
+    super.initState();
+    Get.put(LocationController());
   }
-
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -71,26 +70,28 @@ class _HomeScreenState extends State<HomeScreen> {
                 AuthController.instence.user!.displayName ?? "Name",
                 style: const TextStyle(color: Colors.white),
               ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(() => const SelectLocationScreen());
-                },
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "City",
-                      style: TextStyle(
-                          color: Colors.white.withAlpha(150),
-                          fontSize: 17,
-                          inherit: true),
-                    ),
-                    Icon(
-                      Icons.keyboard_arrow_down_rounded,
-                      color: Colors.white.withAlpha(150),
-                      size: 23,
-                    )
-                  ],
+              Obx(()=>
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => const SelectLocationScreen());
+                  },
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        LocationController.instence.city.value,
+                        style: TextStyle(
+                            color: Colors.white.withAlpha(150),
+                            fontSize: 17,
+                            inherit: true),
+                      ),
+                      Icon(
+                        Icons.keyboard_arrow_down_rounded,
+                        color: Colors.white.withAlpha(150),
+                        size: 23,
+                      )
+                    ],
+                  ),
                 ),
               )
               // DropdownButton<String>(

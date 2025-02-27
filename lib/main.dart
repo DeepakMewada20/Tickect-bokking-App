@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_movie_ticket/controllers/auth_controller.dart';
-import 'package:my_movie_ticket/controllers/profile_controller.dart';
 import 'package:my_movie_ticket/pages/splash_screen.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
 
@@ -10,7 +9,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   Get.put(AuthController());
-  Get.put(ProfileController());
+  
   runApp(const MyApp());
 }
 
