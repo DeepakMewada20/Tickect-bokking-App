@@ -5,14 +5,9 @@ import 'package:my_movie_ticket/utils/dummy_data.dart';
 
 class LocationController extends GetxController {
   RxString city = citys[0].obs;
-  RxBool isLocating = false.obs;
+  RxBool isLocating =false.obs;
   static LocationController instence = Get.find();
 
-  @override
-  void onReady() {
-    super.onReady();
-    getLocation();
-  }
 
   Future<void> getLocation() async {
     Location location = Location();
@@ -20,6 +15,8 @@ class LocationController extends GetxController {
     bool serviceEnabled;
     PermissionStatus permissionGranted;
     LocationData locationData;
+
+    setIsLocating(false);
 
     //check if location service enable of not
     serviceEnabled = await location.serviceEnabled();
@@ -38,7 +35,7 @@ class LocationController extends GetxController {
         return;
       }
     }
-    isLocating = true.obs;
+    setIsLocating(true);
     //getting the current location
     locationData = await location.getLocation();
 
@@ -47,13 +44,18 @@ class LocationController extends GetxController {
       locationData.latitude!,
       locationData.longitude!,
     );
-    isLocating = false.obs;
+    setIsLocating(false);
     //print(address[0].subLocality);
     setCity(address[0].locality!);
   }
 
   setCity(String myCity) {
     city = myCity.obs;
+    update();
+  }
+
+  setIsLocating(bool location) {
+    isLocating = location.obs;
     update();
   }
 }

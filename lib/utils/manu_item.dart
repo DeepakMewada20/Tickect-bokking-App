@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:my_movie_ticket/pages/veiw_all_screen.dart';
 import 'package:my_movie_ticket/utils/dummy_data.dart';
 
 class ManuItem extends StatelessWidget {
@@ -21,7 +23,8 @@ class ManuItem extends StatelessWidget {
               padding: const EdgeInsets.only(left: 20, right: 20),
               child: GestureDetector(
                 onTap: () {
-                  print(manus[i].name);
+                  //sending argument to next page
+                  Get.to(() => const VeiwAllScreen(),arguments: manus[i]);
                 },
                 child: Column(
                   children: [

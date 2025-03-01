@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_overlay/loading_overlay.dart';
 import 'package:my_movie_ticket/pages/home_screen.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
 import 'package:my_movie_ticket/controllers/location_controller.dart';
@@ -23,7 +24,9 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
     padding: const EdgeInsets.only(top: 20),
     child: GestureDetector(
       onTap: () async {
+        LocationController.instence.isLocating(true);
         await LocationController.instence.getLocation();
+
         Get.offAll(() => const HomeScreen());
       },
       child: Container(
@@ -118,58 +121,66 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
         elevation: 0,
       ),
       body: LayoutBuilder(
-        builder: (context, constraints) => 
-        SizedBox(
-          height: size.height,
-          width: size.width,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                myLocationWidget,
-                Padding(
-                  padding: const EdgeInsets.only(top: 30),
-                  child: GridView.builder(
-                    itemCount: citys.length,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: constraints.maxWidth > 600 ? 5 : 3,
-                      mainAxisSpacing: 20,
-                      crossAxisSpacing: 20,
-                      childAspectRatio: 2,
-                    ),
-                    itemBuilder: (_, index) => GestureDetector(
-                        onTap: () {
-                          LocationController.instence.setCity(citys[index]);
-                          Get.offAll(() => HomeScreen());
-                        },
-                        child: sagesedCitys(citys[index])),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 30),
-                  child: TextFormField(
-                    style: const TextStyle(color: Colors.black, fontSize: 17),
-                    decoration: InputDecoration(
-                      hintText: "search City",
-                      fillColor: MyTheme.greyColor,
-                      filled: true,
-                      prefixIcon: const Icon(
-                        Icons.search_rounded,
-                        color: Colors.black45,
-                        size: 23,
-                      ),
-                      hintStyle: const TextStyle(color: Colors.black45),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(10),
+        builder: (context, constraints) => Obx(
+          () => LoadingOverlay(
+            isLoading: LocationController.instence.isLocating.value,
+            progressIndicator: const CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation(MyTheme.appBarColor),
+            ),
+            child: SizedBox(
+              height: size.height,
+              width: size.width,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    myLocationWidget,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 30),
+                      child: GridView.builder(
+                        itemCount: citys.length,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: constraints.maxWidth > 600 ? 5 : 3,
+                          mainAxisSpacing: 20,
+                          crossAxisSpacing: 20,
+                          childAspectRatio: 2,
+                        ),
+                        itemBuilder: (_, index) => GestureDetector(
+                            onTap: () {
+                              LocationController.instence.setCity(citys[index]);
+                              Get.offAll(() => const HomeScreen());
+                            },
+                            child: sagesedCitys(citys[index])),
                       ),
                     ),
-                  ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 30),
+                      child: TextFormField(
+                        style:
+                            const TextStyle(color: Colors.black, fontSize: 17),
+                        decoration: InputDecoration(
+                          hintText: "search City",
+                          fillColor: MyTheme.greyColor,
+                          filled: true,
+                          prefixIcon: const Icon(
+                            Icons.search_rounded,
+                            color: Colors.black45,
+                            size: 23,
+                          ),
+                          hintStyle: const TextStyle(color: Colors.black45),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ),
