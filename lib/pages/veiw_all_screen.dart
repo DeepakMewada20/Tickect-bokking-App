@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:my_movie_ticket/modal/menu_modal.dart';
 import 'package:get/get.dart';
 import 'package:my_movie_ticket/utils/dummy_data.dart';

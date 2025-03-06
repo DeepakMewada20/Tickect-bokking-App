@@ -12,7 +12,7 @@ class MenuModal {
   }) {
     return MenuModal(
       name: name ?? this.name,
-      assets: asset ?? this.assets,
+      assets: asset ?? assets,
     );
   }
 
