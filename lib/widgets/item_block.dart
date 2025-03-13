@@ -24,47 +24,50 @@ class ItemBlock extends StatelessWidget {
         onTap: () {
           print(modal.title);
         },
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
-                modal.bannerUrl,
-                width: width,
-                height: higet,
-                fit: BoxFit.cover,
+        child: SingleChildScrollView(
+          physics: const NeverScrollableScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  modal.bannerUrl,
+                  width: width,
+                  height: higet,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Text(
-              modal.title,
-              style: const TextStyle(color: Colors.black, fontSize: 16),
-            ),
-            isMovie == true
-                ? Row(
-                    children: [
-                      const Icon(
-                        Icons.favorite,
-                        color: MyTheme.splash,
-                      ),
-                      const SizedBox(
-                        width: 4,
-                      ),
-                      Text(
-                        "${modal.like}%",
-                        style:
-                            const TextStyle(color: Colors.black, fontSize: 13),
-                      ),
-                    ],
-                  )
-                : Text(
-                    modal.description.toUpperCase(),
-                    style: const TextStyle(color: Colors.black, fontSize: 13),
-                  ),
-          ],
+              const SizedBox(
+                height: 5,
+              ),
+              Text(
+                modal.title,
+                style: const TextStyle(color: Colors.black, fontSize: 16),
+              ),
+              isMovie == true
+                  ? Row(
+                      children: [
+                        const Icon(
+                          Icons.favorite,
+                          color: MyTheme.splash,
+                        ),
+                        const SizedBox(
+                          width: 4,
+                        ),
+                        Text(
+                          "${modal.like}%",
+                          style: const TextStyle(
+                              color: Colors.black, fontSize: 13),
+                        ),
+                      ],
+                    )
+                  : Text(
+                      modal.description.toUpperCase(),
+                      style: const TextStyle(color: Colors.black, fontSize: 13),
+                    ),
+            ],
+          ),
         ),
       ),
     );
