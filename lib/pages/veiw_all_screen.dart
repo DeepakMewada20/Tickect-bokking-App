@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:my_movie_ticket/controllers/common_controller.dart';
+//import 'package:flutter/rendering.dart';
+import 'package:my_movie_ticket/controllers/location_controller.dart';
 import 'package:my_movie_ticket/modal/menu_modal.dart';
 import 'package:get/get.dart';
 import 'package:my_movie_ticket/utils/dummy_data.dart';
+import 'package:my_movie_ticket/utils/mytheme.dart';
 import 'package:my_movie_ticket/widgets/item_block.dart';
+import 'package:my_movie_ticket/controllers/common_controller.dart';
 
 class VeiwAllScreen extends StatefulWidget {
   const VeiwAllScreen({super.key});
@@ -15,6 +20,9 @@ class VeiwAllScreen extends StatefulWidget {
 class _VeiwAllScreenState extends State<VeiwAllScreen> {
   MenuModal manu = Get.arguments;
   late List<dynamic> list;
+
+  final selectedTextSyle = const TextStyle(color: MyTheme.splash, fontSize: 16);
+  final normalTextSyle = const TextStyle(color: Colors.black45, fontSize: 16);
 
   @override
   void initState() {
@@ -34,7 +42,11 @@ class _VeiwAllScreenState extends State<VeiwAllScreen> {
       appBar: AppBar(
         foregroundColor: Colors.white,
         elevation: 0,
-        title: Text(manu.name),
+        title: Text(
+          "${manu.name} in ${LocationController.instence.city}",
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -53,7 +65,61 @@ class _VeiwAllScreenState extends State<VeiwAllScreen> {
           ),
         ],
       ),
-      body: Container(),
+      body: Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              flex: 1,
+              child: TabBar(
+                tabs: CommonController.instance.tabs,
+                controller: CommonController.instance.tabController,
+                indicator: const UnderlineTabIndicator(
+                  borderSide: BorderSide(
+                    color: MyTheme.splash,
+                    width: 3,
+                  ),
+                  insets: EdgeInsets.all(15),
+                ),
+                indicatorSize: TabBarIndicatorSize.label,
+                indicatorWeight: 3,
+                labelStyle: selectedTextSyle,
+                unselectedLabelColor: Colors.black45,
+                labelColor: MyTheme.splash,
+                enableFeedback: false,
+                isScrollable: false,
+                unselectedLabelStyle: normalTextSyle,
+                onTap: (index) => CommonController.instance.updatePage(index),
+              ),
+            ),
+            Expanded(
+              flex: 8,
+              child: PageView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  controller: CommonController.instance.pageController,
+                  itemCount: 3,
+                  itemBuilder: (context, index) {
+                    return LayoutBuilder(builder: (context, constraint) {
+                      return GridView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: constraint.maxWidth > 500 ? 4 : 2,
+                            childAspectRatio: 0.85),
+                        itemBuilder: (_, index) {
+                          return ItemBlock(
+                            modal: list[index],
+                            higet: 200,
+                            width: 180,
+                          );
+                        },
+                        itemCount: list.length,
+                      );
+                    });
+                  }),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

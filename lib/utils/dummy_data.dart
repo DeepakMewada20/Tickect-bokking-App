@@ -59,7 +59,7 @@ List<MovieModel> movies = [
 List<EventModel> events = [
   EventModel(
       title: "dances",
-      description: "description",
+      description: "description ",
       bannerUrl: "assets/events/event1.png",
       date: "date"),
   EventModel(

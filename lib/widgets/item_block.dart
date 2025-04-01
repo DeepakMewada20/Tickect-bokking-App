@@ -62,9 +62,15 @@ class ItemBlock extends StatelessWidget {
                         ),
                       ],
                     )
-                  : Text(
-                      modal.description.toUpperCase(),
-                      style: const TextStyle(color: Colors.black, fontSize: 13),
+                  : SizedBox(
+                      width: width,
+                      child: Text(
+                        modal.description,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style:
+                            const TextStyle(color: Colors.black, fontSize: 13),
+                      ),
                     ),
             ],
           ),
