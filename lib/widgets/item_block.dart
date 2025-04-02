@@ -6,11 +6,13 @@ class ItemBlock extends StatelessWidget {
   final bool isMovie;
   final double higet;
   final double width;
+  final Function(dynamic modal) onTap;
   const ItemBlock(
       {required this.modal,
       this.isMovie = false,
       this.higet = 150,
       this.width = 120,
+      required this.onTap,
       super.key});
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class ItemBlock extends StatelessWidget {
       ),
       child: GestureDetector(
         onTap: () {
-          print(modal.title);
+          onTap(modal);
         },
         child: SingleChildScrollView(
           physics: const NeverScrollableScrollPhysics(),

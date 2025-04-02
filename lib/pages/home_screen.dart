@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:my_movie_ticket/controllers/auth_controller.dart';
 import 'package:my_movie_ticket/controllers/location_controller.dart';
+import 'package:my_movie_ticket/controllers/shared_pref.dart';
 import 'package:my_movie_ticket/pages/profile_page.dart';
 import 'package:my_movie_ticket/pages/select_location_screen.dart';
 import 'package:my_movie_ticket/utils/constants.dart';
@@ -24,11 +25,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-   @override
+  String city = citys[0];
+  @override
   void initState() {
+    SharedPref.getLocation().then((value) => city = value);
     super.initState();
-    Get.put(LocationController());
+    Get.put(
+      LocationController(),
+    );
   }
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -70,8 +76,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 AuthController.instence.user!.displayName ?? "Name",
                 style: const TextStyle(color: Colors.white),
               ),
-              Obx(()=>
-                GestureDetector(
+              Obx(
+                () => GestureDetector(
                   onTap: () {
                     Get.to(() => const SelectLocationScreen());
                   },

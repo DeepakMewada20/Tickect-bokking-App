@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:my_movie_ticket/utils/dummy_data.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
 import 'package:my_movie_ticket/widgets/item_block.dart';
-import 'package:my_movie_ticket/controllers/common_controller.dart';
 
 class VeiwAllScreen extends StatefulWidget {
   const VeiwAllScreen({super.key});
@@ -38,86 +37,96 @@ class _VeiwAllScreenState extends State<VeiwAllScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        foregroundColor: Colors.white,
-        elevation: 0,
-        title: Text(
-          "${manu.name} in ${LocationController.instence.city}",
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              showSearch(
-                context: context,
-                delegate: MySearchDelegete(
-                    isMovie:
-                        (manu.name.toLowerCase() == "movie") ? true : false,
-                    list: list),
-              );
-            },
-            icon: const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Icon(Icons.search_rounded),
-            ),
+    return PopScope(
+      onPopInvokedWithResult: (didPop, result) {
+        CommonController.instance.tabController.animateTo(0);
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          foregroundColor: Colors.white,
+          elevation: 0,
+          title: Text(
+            "${manu.name} in ${LocationController.instence.city}",
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
-        ],
-      ),
-      body: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(
-              flex: 1,
-              child: TabBar(
-                tabs: CommonController.instance.tabs,
-                controller: CommonController.instance.tabController,
-                indicator: const UnderlineTabIndicator(
-                  borderSide: BorderSide(
-                    color: MyTheme.splash,
-                    width: 3,
-                  ),
-                  insets: EdgeInsets.all(15),
-                ),
-                indicatorSize: TabBarIndicatorSize.label,
-                indicatorWeight: 3,
-                labelStyle: selectedTextSyle,
-                unselectedLabelColor: Colors.black45,
-                labelColor: MyTheme.splash,
-                enableFeedback: false,
-                isScrollable: false,
-                unselectedLabelStyle: normalTextSyle,
-                onTap: (index) => CommonController.instance.updatePage(index),
+          actions: [
+            IconButton(
+              onPressed: () {
+                showSearch(
+                  context: context,
+                  delegate: MySearchDelegete(
+                      isMovie:
+                          (manu.name.toLowerCase() == "movie") ? true : false,
+                      list: list),
+                );
+              },
+              icon: const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Icon(Icons.search_rounded),
               ),
             ),
-            Expanded(
-              flex: 8,
-              child: PageView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  controller: CommonController.instance.pageController,
-                  itemCount: 3,
-                  itemBuilder: (context, index) {
-                    return LayoutBuilder(builder: (context, constraint) {
-                      return GridView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: constraint.maxWidth > 500 ? 4 : 2,
-                            childAspectRatio: 0.85),
-                        itemBuilder: (_, index) {
-                          return ItemBlock(
-                            modal: list[index],
-                            higet: 200,
-                            width: 180,
-                          );
-                        },
-                        itemCount: list.length,
-                      );
-                    });
-                  }),
-            ),
           ],
+        ),
+        body: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                flex: 1,
+                child: TabBar(
+                  tabs: CommonController.instance.tabs,
+                  controller: CommonController.instance.tabController,
+                  indicator: const UnderlineTabIndicator(
+                    borderSide: BorderSide(
+                      color: MyTheme.splash,
+                      width: 3,
+                    ),
+                    insets: EdgeInsets.all(15),
+                  ),
+                  indicatorSize: TabBarIndicatorSize.label,
+                  indicatorWeight: 3,
+                  labelStyle: selectedTextSyle,
+                  unselectedLabelColor: Colors.black45,
+                  labelColor: MyTheme.splash,
+                  enableFeedback: false,
+                  isScrollable: false,
+                  unselectedLabelStyle: normalTextSyle,
+                  onTap: (index) => CommonController.instance.updatePage(index),
+                ),
+              ),
+              Expanded(
+                flex: 8,
+                child: PageView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    controller: CommonController.instance.pageController,
+                    itemCount: 3,
+                    itemBuilder: (context, index) {
+                      return LayoutBuilder(builder: (context, constraint) {
+                        return GridView.builder(
+                          physics: const BouncingScrollPhysics(),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount:
+                                      constraint.maxWidth > 500 ? 4 : 2,
+                                  childAspectRatio: 0.85),
+                          itemBuilder: (_, index) {
+                            return ItemBlock(
+                              modal: list[index],
+                              higet: 200,
+                              width: 180,
+                              onTap: (modal) {
+                                print(modal.title);
+                              },
+                            );
+                          },
+                          itemCount: list.length,
+                        );
+                      });
+                    }),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -136,6 +145,9 @@ class MySearchDelegete extends SearchDelegate<String> {
       isMovie: isMovie,
       higet: 200,
       width: 180,
+      onTap: (modal) {
+        print(modal.title);
+      },
     );
   }
 
