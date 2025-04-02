@@ -2,7 +2,9 @@ import 'package:my_movie_ticket/modal/ad_slider_modal.dart';
 import 'package:my_movie_ticket/modal/event_model.dart';
 import 'package:my_movie_ticket/modal/menu_modal.dart';
 import 'package:my_movie_ticket/modal/movie_modal.dart';
+import 'package:my_movie_ticket/modal/offer_modal.dart';
 import 'package:my_movie_ticket/utils/constants.dart';
+import 'package:my_movie_ticket/utils/mytheme.dart';
 
 List<AdSliderModal> sliderData = [
   const AdSliderModal(
@@ -24,7 +26,27 @@ List<MenuModal> manus = [
   const MenuModal(name: "Activity", assets: "assets/icons/flag.svg"),
   const MenuModal(name: "Monum", assets: "assets/icons/pyramid.svg"),
 ];
-
+List<OfferModel> offers = [
+  OfferModel(
+    title: "Wait ! Grab FREE reward",
+    description: "Book your seats and tap on the reward box to claim it.",
+    expiry: DateTime(2022, 4, 15, 12),
+    startTime: DateTime(2022, 3, 15, 12),
+    discount: 100,
+    color: MyTheme.redTextColor,
+    gradientColor: MyTheme.redGiftGradientColors,
+  ),
+  OfferModel(
+    title: "Wait ! Grab FREE reward",
+    description: "Book your seats and tap on the reward box to claim it.",
+    expiry: DateTime(2022, 4, 15, 12),
+    startTime: DateTime(2022, 3, 15, 12),
+    discount: 100,
+    color: MyTheme.greenTextColor,
+    gradientColor: MyTheme.greenGiftGradientColors,
+    icon: "gift_green.svg",
+  ),
+];
 List<MovieModel> movies = [
   MovieModel(
     title: "Bigil",
