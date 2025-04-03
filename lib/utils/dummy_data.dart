@@ -4,6 +4,7 @@ import 'package:my_movie_ticket/modal/event_model.dart';
 import 'package:my_movie_ticket/modal/menu_modal.dart';
 import 'package:my_movie_ticket/modal/movie_modal.dart';
 import 'package:my_movie_ticket/modal/offer_modal.dart';
+import 'package:my_movie_ticket/modal/theatre_model.dart';
 import 'package:my_movie_ticket/utils/constants.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
 
@@ -169,4 +170,11 @@ List<CrewCastModel> crewCast = [
     name: "Lupita Nyongsdfafadfa",
     image: "assets/actors/lupita_nyong.png",
   ),
+];
+
+List<TheatreModel> theatres = [
+  TheatreModel(id: "1", name: "Arasan Cinemas A/C 2K Dolby"),
+  TheatreModel(id: "2", name: "INOX - Prozone mall"),
+  TheatreModel(id: "3", name: "Karpagam theatres - 4K Dolby Atoms"),
+  TheatreModel(id: "4", name: "KG theatres - 4K"),
 ];

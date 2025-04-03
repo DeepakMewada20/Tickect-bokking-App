@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_movie_ticket/controllers/auth_controller.dart';
+import 'package:my_movie_ticket/controllers/calendar_controller.dart';
 import 'package:my_movie_ticket/controllers/common_controller.dart';
 import 'package:my_movie_ticket/pages/splash_screen.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
@@ -11,6 +12,7 @@ void main() async {
   await Firebase.initializeApp();
   Get.put(AuthController());
   Get.put(CommonController());
+  Get.put(CalendarController());
   runApp(const MyApp());
 }
 

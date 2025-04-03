@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:my_movie_ticket/pages/list_cinema_screen.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
 import 'package:my_movie_ticket/widgets/cast_crew_block.dart';
 import 'package:my_movie_ticket/widgets/offer_block.dart';
@@ -176,7 +177,9 @@ class DetailsPage extends StatelessWidget {
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.to(()=> ListCinemaScreen(modal: modal,),);
+          },
           style: ElevatedButton.styleFrom(
             foregroundColor: Colors.white,
             backgroundColor: MyTheme.splash,
