@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_movie_ticket/modal/offer_modal.dart';
 import 'package:my_movie_ticket/utils/dummy_data.dart';
-import 'package:my_movie_ticket/utils/mytheme.dart';
 
 class OfferBlock extends StatelessWidget {
   const OfferBlock({super.key});
@@ -11,7 +10,7 @@ class OfferBlock extends StatelessWidget {
         padding: const EdgeInsets.only(right: 20, left: 5, bottom: 2),
         child: DottedBorder(
           //strokeWidth: 1,
-          dashPattern: [4, 5],
+          dashPattern: const [4, 5],
           color: Colors.black45,
           padding: const EdgeInsets.all(20),
           radius: const Radius.circular(6),
@@ -20,7 +19,7 @@ class OfferBlock extends StatelessWidget {
               Container(
                 //width: double.maxFinite,
 
-                padding: EdgeInsets.only(left: 18, right: 18),
+                padding: const EdgeInsets.only(left: 18, right: 18),
                 height: double.maxFinite,
                 width: 60,
                 decoration: BoxDecoration(
@@ -37,7 +36,7 @@ class OfferBlock extends StatelessWidget {
                   // color: Colors.black,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
               Column(
@@ -48,14 +47,14 @@ class OfferBlock extends StatelessWidget {
                     modal.title,
                     style: TextStyle(color: modal.color, fontSize: 15),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
-                  Container(
+                  SizedBox(
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: Text(
                       modal.description,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black45,
                         fontSize: 15,
                       ),
@@ -73,7 +72,7 @@ class OfferBlock extends StatelessWidget {
     return Container(
       color: Colors.white,
       width: double.maxFinite,
-      height: 220,
+      height: 200,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
         child: Column(
@@ -86,7 +85,7 @@ class OfferBlock extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                   color: Colors.black),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Expanded(

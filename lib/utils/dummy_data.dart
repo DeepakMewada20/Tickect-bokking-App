@@ -1,4 +1,5 @@
 import 'package:my_movie_ticket/modal/ad_slider_modal.dart';
+import 'package:my_movie_ticket/modal/crew_cast_model.dart';
 import 'package:my_movie_ticket/modal/event_model.dart';
 import 'package:my_movie_ticket/modal/menu_modal.dart';
 import 'package:my_movie_ticket/modal/movie_modal.dart';
@@ -141,4 +142,31 @@ List<String> citys = [
   "Kolkata",
   "Chennai",
   "Lucknow",
+];
+
+List<CrewCastModel> crewCast = [
+  CrewCastModel(
+    movieId: "123",
+    castId: "123",
+    name: "Chadwick",
+    image: "assets/actors/chadwick.png",
+  ),
+  CrewCastModel(
+    movieId: "123",
+    castId: "123",
+    name: "Letitia Wright",
+    image: "assets/actors/LetitiaWright.png",
+  ),
+  CrewCastModel(
+    movieId: "123",
+    castId: "123",
+    name: "B. Jordan",
+    image: "assets/actors/b_jordan.png",
+  ),
+  CrewCastModel(
+    movieId: "123",
+    castId: "123",
+    name: "Lupita Nyong",
+    image: "assets/actors/lupita_nyong.png",
+  ),
 ];

@@ -96,6 +96,8 @@ flutter:
     - assets/plays/
     - assets/images/movie_banner.png
     - assets/icons/gift_red.svg
+    - assets/icons/gift_green.svg
+    - assets/actors/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

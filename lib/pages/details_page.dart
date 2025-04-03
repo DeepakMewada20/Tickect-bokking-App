@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:my_movie_ticket/modal/movie_modal.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
+import 'package:my_movie_ticket/widgets/cast_crew_block.dart';
 import 'package:my_movie_ticket/widgets/offer_block.dart';
+import 'package:my_movie_ticket/widgets/review_block.dart';
 
 class DetailsPage extends StatelessWidget {
   DetailsPage({super.key});
@@ -195,15 +198,26 @@ class DetailsPage extends StatelessWidget {
             hasScrollBody: false,
             child: Container(
               color: const Color(0xFFF5F5Fa),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  bolck1(modal),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  const OfferBlock(),
-                ],
+              child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    bolck1(modal),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    const OfferBlock(),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    const ReviewBlock(),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    const CrewCastBlock(),
+                  ],
+                ),
               ),
             ),
           )
