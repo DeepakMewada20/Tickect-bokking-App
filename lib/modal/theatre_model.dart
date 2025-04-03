@@ -71,7 +71,7 @@ class TheatreModel {
     return TheatreModel(
       id: map['id'] ?? '',
       name: map['name'] ?? '',
-      coordinates: LatLng.fromJson(map["coordinates"])??const LatLng(22.7438292,75.8937514),
+      coordinates: map["coordinates"],
       facilites: List<String>.from(map['facilites']),
       fullAddress: map['fullAddress'] ?? '',
       timings: List<String>.from(map['timings']),

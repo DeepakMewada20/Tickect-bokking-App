@@ -10,7 +10,7 @@ import '../utils/mytheme.dart';
 
 class FacilitesBottomSheet extends StatelessWidget {
   final dynamic model;
-  const FacilitesBottomSheet({Key? key, required this.model}) : super(key: key);
+  const FacilitesBottomSheet({required this.model,super.key});
   static const CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.4746,

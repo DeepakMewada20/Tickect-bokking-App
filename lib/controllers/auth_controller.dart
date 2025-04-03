@@ -87,7 +87,7 @@ class AuthController extends GetxController {
     }
   }
 
-  getErrorSnackeBar(String massage, _) {
+  getErrorSnackeBar(String massage,_) {
     Get.snackbar(
       "Error",
       "$massage\n $_",
@@ -102,7 +102,29 @@ class AuthController extends GetxController {
       ),
     );
   }
+    getErrorSnackBarNew(String message) {
+    Get.snackbar(
+      "Error",
+      message,
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: MyTheme.redTextColor,
+      colorText: Colors.white,
+      borderRadius: 10,
+      margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+    );
+  }
 
+  getSuccessSnackBar(String message) {
+    Get.snackbar(
+      "Success",
+      message,
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: MyTheme.greenTextColor,
+      colorText: Colors.white,
+      borderRadius: 10,
+      margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+    );
+  }
   void signOut() async {
     await auth.signOut();
   }

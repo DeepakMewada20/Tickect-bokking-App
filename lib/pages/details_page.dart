@@ -178,7 +178,9 @@ class DetailsPage extends StatelessWidget {
       bottomNavigationBar: BottomAppBar(
         child: ElevatedButton(
           onPressed: () {
-            Get.to(()=> ListCinemaScreen(modal: modal,),);
+            Get.to(
+              () => ListCinemaScreen(model: modal),
+            );
           },
           style: ElevatedButton.styleFrom(
             foregroundColor: Colors.white,

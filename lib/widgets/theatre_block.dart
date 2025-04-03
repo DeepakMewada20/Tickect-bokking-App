@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:my_movie_ticket/controllers/calendar_controller.dart';
 import 'package:my_movie_ticket/controllers/location_controller.dart';
 import 'package:my_movie_ticket/modal/theatre_model.dart';
-import 'package:my_movie_ticket/utils/dummy_data.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
 import 'package:my_movie_ticket/widgets/facilities_bottom_sheet.dart';
 
@@ -32,7 +30,7 @@ class TheatreBlock extends StatelessWidget {
             children: [
               Text(
                 model.name,
-                style: TextStyle(color: Colors.black, fontSize: 17),
+                style: const TextStyle(color: Colors.black, fontSize: 17),
               ),
               GestureDetector(
                 onTap: () {
@@ -58,10 +56,10 @@ class TheatreBlock extends StatelessWidget {
             height: 5,
           ),
           isBooking
-              ? Text(
+              ? const Text(
                   // instance.format(instance.selectedMovieDate.value),
                   "Normal Text", //afer work remove it
-                  style: const TextStyle(color: Color(0xff999999)),
+                  style: TextStyle(color: Color(0xff999999)),
                 )
               : RichText(
                   text: TextSpan(
@@ -73,17 +71,17 @@ class TheatreBlock extends StatelessWidget {
                           color: Color(0xff999999),
                         ),
                       ),
-                      WidgetSpan(
+                      const WidgetSpan(
                         child: SizedBox(
                           width: 4,
                         ),
                       ),
                       TextSpan(
-                        text: LocationController.instence.city.value + ", ",
+                        text: "${LocationController.instence.city.value}, ",
                         style: const TextStyle(
                             color: Color(0xff999999), fontSize: 15),
                       ),
-                      WidgetSpan(
+                      const WidgetSpan(
                         child: SizedBox(
                           width: 4,
                         ),
@@ -145,7 +143,7 @@ class TheatreBlock extends StatelessWidget {
           //     ),
           //   ),
           // )
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Wrap(

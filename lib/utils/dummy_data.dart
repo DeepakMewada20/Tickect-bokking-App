@@ -185,3 +185,8 @@ List<String> facilityAsset = [
   "assets/icons/cutlery.svg",
   "assets/icons/rocking_horse.svg",
 ];
+
+List<String> screens = [
+  "3D",
+  "2D",
+];

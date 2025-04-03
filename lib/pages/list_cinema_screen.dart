@@ -1,19 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:my_movie_ticket/controllers/calendar_controller.dart';
+import 'package:my_movie_ticket/controllers/common_controller.dart';
+import 'package:my_movie_ticket/controllers/seat_selection_controller.dart';
 import 'package:my_movie_ticket/modal/movie_modal.dart';
 import 'package:my_movie_ticket/pages/veiw_all_screen.dart';
+import 'package:my_movie_ticket/utils/custom_calander.dart';
 import 'package:my_movie_ticket/utils/dummy_data.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
 import 'package:my_movie_ticket/widgets/theatre_block.dart';
 
-class ListCinemaScreen extends StatelessWidget {
-  final MovieModel modal;
-  ListCinemaScreen({required this.modal, super.key});
+import '../utils/screen_selection_block.dart';
 
+class ListCinemaScreen extends StatefulWidget {
+  final MovieModel model;
+  const ListCinemaScreen({required this.model, super.key});
+
+  @override
+  State<ListCinemaScreen> createState() => _ListCinemaScreenState();
+}
+
+class _ListCinemaScreenState extends State<ListCinemaScreen> {
   final DateFormat format = DateFormat("dd MMM");
 
   final now = DateTime.now();
+
+  DateTime? _selectedDate;
 
   String selectedDate = DateFormat("dd MMM").format(DateTime.now());
 
@@ -22,59 +35,103 @@ class ListCinemaScreen extends StatelessWidget {
   String selectedScreen = "3D";
   late CalendarController commonController;
 
+  void _presentDatePeker() async {
+    final currentDate = DateTime.now();
+    final firstDate = currentDate;
+    final lastDate =
+        DateTime(currentDate.year + 1, currentDate.month, currentDate.day);
+
+    final pickedDate = await showDatePicker(
+      context: context,
+      initialDate: currentDate,
+      firstDate: firstDate,
+      lastDate: lastDate,
+    );
+    setState(() {
+      _selectedDate = pickedDate;
+    });
+  }
+
+  @override
+  void initState() {
+    commonController = Get.put(CalendarController());
+    Get.put(SeatSelectionController());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final todayDate = format.format(now);
-    final tomorrowDate = format.format(now.add(const Duration(days: 1)));
-    String dayText = "";
-
-    if (selectedDate == todayDate) {
-      dayText = "Today, ";
-    } else if (selectedDate == tomorrowDate) {
-      dayText = "Tomorrow, ";
-    } else {
-      dayText =
-          DateFormat("EEE").format(commonController.selectedMovieDate.value) +
-              ", ";
-    }
+    selectedDate = DateFormat("dd MMM").format(
+      _selectedDate ?? DateTime.now(),
+    );
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
         color: MyTheme.appBarColor,
-        child: Container(
+        child: SizedBox(
           width: double.maxFinite,
           height: AppBar().preferredSize.height,
           child: Row(
             // mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Expanded(
-                flex: 4,
-                child: ListTile(
-                  onTap: () {},
-                  textColor: Colors.white,
-                  horizontalTitleGap: 4,
-                  leading: const Icon(
-                    Icons.calendar_month,
-                    color: Colors.white,
-                  ),
-                  title: Text(
-                    "$dayText,$selectedDate",
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  trailing: const Icon(
-                    Icons.keyboard_arrow_down,
-                    color: Colors.white,
-                  ),
-                ),
+                flex: 7,
+                child: StatefulBuilder(builder: (context, setState) {
+                  final todayDate = format.format(now);
+                  final tomorrowDate =
+                      format.format(now.add(const Duration(days: 1)));
+                  String dayText = "";
+
+                  if (selectedDate == todayDate) {
+                    dayText = "Today, ";
+                  } else if (selectedDate == tomorrowDate) {
+                    dayText = "Tomorrow, ";
+                  } else {
+                    dayText =
+                        "${DateFormat("EEE").format(_selectedDate ?? commonController.selectedMovieDate.value)}, ";
+                  }
+                  return ListTile(
+                    onTap: () {
+                      _presentDatePeker();
+                    },
+                    textColor: Colors.white,
+                    horizontalTitleGap: 4,
+                    leading: const Icon(
+                      Icons.calendar_month,
+                      color: Colors.white,
+                    ),
+                    title: Text(
+                      "$dayText,$selectedDate",
+                      style: const TextStyle(fontSize: 15),
+                    ),
+                    trailing: const Icon(
+                      Icons.keyboard_arrow_down,
+                      color: Colors.white,
+                    ),
+                  );
+                }),
               ),
               Expanded(
-                flex: 3,
+                flex: 5,
                 child: ListTile(
-                  onTap: () {},
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      builder: (_) => ScreenSelectionBlock(
+                        onScreenSelect: (screen) {
+                          CommonController.instance.updateScreen(screen);
+                          setState(() => selectedScreen = screen);
+                        },
+                      ),
+                      constraints: BoxConstraints(
+                          maxHeight: MediaQuery.of(context).size.height * 0.25),
+                    );
+                  },
                   horizontalTitleGap: 0,
                   textColor: Colors.white,
                   title: Text(
                     "$selectedLanguage,$selectedScreen",
-                    style: TextStyle(fontSize: 15),
+                    style: const TextStyle(fontSize: 15),
                   ),
                   trailing: const Icon(
                     Icons.keyboard_arrow_down,
@@ -90,17 +147,14 @@ class ListCinemaScreen extends StatelessWidget {
       appBar: AppBar(
         foregroundColor: Colors.white,
         elevation: 0,
-        title: Text(modal.title),
+        title: Text(widget.model.title),
         actions: [
           IconButton(
             onPressed: () {
-              // showSearch(
-              //   context: context,
-              //   delegate: MySearchDelegete(
-              //       isMovie:
-              //           (manus.name.toLowerCase() == "movie") ? true : false,
-              //       list: list),
-              // );
+              showSearch(
+                context: context,
+                delegate: TheatreSearchDelegate(widget.model),
+              );
             },
             icon: const Padding(
               padding: EdgeInsets.all(8.0),
@@ -124,6 +178,7 @@ class ListCinemaScreen extends StatelessWidget {
     );
   }
 }
+
 class TheatreSearchDelegate extends SearchDelegate {
   final MovieModel model;
   TheatreSearchDelegate(this.model);
@@ -160,7 +215,8 @@ class TheatreSearchDelegate extends SearchDelegate {
         ? theatres
         : theatres
             .where(
-              (element) => element.name.toLowerCase().contains(query.toLowerCase()),
+              (element) =>
+                  element.name.toLowerCase().contains(query.toLowerCase()),
             )
             .toList();
 
@@ -169,13 +225,14 @@ class TheatreSearchDelegate extends SearchDelegate {
       itemCount: suggestionList.length,
       itemBuilder: (_, index) {
         return Container(
-          padding: EdgeInsets.only(bottom: index != suggestionList.length - 1 ? 20 : 0),
-          // child: TheatreBlock(
-          //   model: suggestionList[index],
-          //   onTimeTap: (index) {
-          //     Get.to(() => SeatSelectionScreen(theatreModel: suggestionList[index], movieModel: model));
-          //   },
-          // ),
+          padding: EdgeInsets.only(
+              bottom: index != suggestionList.length - 1 ? 20 : 0),
+          child: TheatreBlock(
+            model: suggestionList[index],
+            // onTimeTap: (index) {
+            //   Get.to(() => SeatSelectionScreen(theatreModel: suggestionList[index], movieModel: model));
+            // },
+          ),
         );
       },
     );

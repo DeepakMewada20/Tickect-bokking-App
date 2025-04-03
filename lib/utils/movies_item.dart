@@ -18,7 +18,7 @@ class MoviesItem extends StatelessWidget {
           itemCount: movies.length,
           itemBuilder: (context, i) {
             return Hero(
-              tag: "${movies[i].title}",
+              tag: movies[i].title,
               child: ItemBlock(
                 modal: movies[i],
                 isMovie: true,
