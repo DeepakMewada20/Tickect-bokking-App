@@ -20,8 +20,9 @@ class CrewCastBlock extends StatelessWidget {
               const Text(
                 "Crew & Casts",
                 style: TextStyle(
-                  fontSize: 14,
-                ),
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600),
               ),
               TextButton(
                 onPressed: () {},
@@ -40,6 +41,8 @@ class CrewCastBlock extends StatelessWidget {
               itemCount: crewCast.length,
               itemBuilder: (_, index) {
                 return Container(
+                  height: 130,
+                  width: 110,
                   padding: const EdgeInsets.all(10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,7 +58,12 @@ class CrewCastBlock extends StatelessWidget {
                       const SizedBox(
                         height: 5,
                       ),
-                      Text(crewCast[index].name)
+                      Text(
+                        crewCast[index].name,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(color: Colors.black45),
+                      )
                     ],
                   ),
                 );

@@ -72,16 +72,16 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/icons/splash_icon.svg
-    - assets/icons/google.svg
-    - assets/icons/facebook.svg
+    # - assets/icons/splash_icon.svg
+    # - assets/icons/google.svg
+    # - assets/icons/facebook.svg
     - assets/images/slider_banner.png
-    - assets/icons/film.svg
-    - assets/icons/spotlights.svg
-    - assets/icons/theater_masks.svg
-    - assets/icons/running.svg
-    - assets/icons/flag.svg
-    - assets/icons/pyramid.svg
+    # - assets/icons/film.svg
+    # - assets/icons/spotlights.svg
+    # - assets/icons/theater_masks.svg
+    # - assets/icons/running.svg
+    # - assets/icons/flag.svg
+    # - assets/icons/pyramid.svg
     - assets/movie/gabbar.png
     - assets/movie/movie1.png
     - assets/movie/movie2.png
@@ -95,9 +95,10 @@ flutter:
     - assets/plays/play1.png
     - assets/plays/
     - assets/images/movie_banner.png
-    - assets/icons/gift_red.svg
-    - assets/icons/gift_green.svg
+    # - assets/icons/gift_red.svg
+    # - assets/icons/gift_green.svg
     - assets/actors/
+    - assets/icons/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
-import 'package:my_movie_ticket/modal/movie_modal.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
 import 'package:my_movie_ticket/widgets/cast_crew_block.dart';
 import 'package:my_movie_ticket/widgets/offer_block.dart';
@@ -12,7 +10,8 @@ import 'package:my_movie_ticket/widgets/review_block.dart';
 class DetailsPage extends StatelessWidget {
   DetailsPage({super.key});
 
-  late final MovieModel modal = Get.arguments;
+  final dynamic modal = Get.arguments;
+  //final int index = Get.arguments;
 
   titalWidget(modal) => Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -175,31 +174,69 @@ class DetailsPage extends StatelessWidget {
       const SystemUiOverlayStyle(statusBarColor: MyTheme.statusBar),
     );
     return Scaffold(
+      bottomNavigationBar: BottomAppBar(
+        child: ElevatedButton(
+          onPressed: () {},
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.white,
+            backgroundColor: MyTheme.splash,
+            elevation: 0,
+          ),
+          child: Container(
+            width: double.maxFinite,
+            height: 50,
+            alignment: Alignment.center,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  "assets/icons/armchair.svg",
+                  color: Colors.white,
+                  width: 20,
+                  height: 20,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                const Text(
+                  "Book Seats",
+                  style: TextStyle(fontSize: 17),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             backgroundColor: MyTheme.appBarColor,
             expandedHeight: 200,
             foregroundColor: Colors.white,
+            pinned: true,
+            title: Text(modal.title),
             flexibleSpace: FlexibleSpaceBar(
-              background: Container(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(
-                      "assets/images/movie_banner.png",
+              background: Hero(
+                tag: "${modal.title}",
+                child: Container(
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                        "assets/images/movie_banner.png",
+                      ),
+                      fit: BoxFit.cover,
                     ),
-                    fit: BoxFit.cover,
                   ),
                 ),
               ),
             ),
           ),
           SliverFillRemaining(
-            hasScrollBody: false,
+            hasScrollBody: true,
             child: Container(
               color: const Color(0xFFF5F5Fa),
               child: SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
+                //physics: ,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

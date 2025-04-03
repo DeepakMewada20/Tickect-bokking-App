@@ -166,7 +166,7 @@ List<CrewCastModel> crewCast = [
   CrewCastModel(
     movieId: "123",
     castId: "123",
-    name: "Lupita Nyong",
+    name: "Lupita Nyongsdfafadfa",
     image: "assets/actors/lupita_nyong.png",
   ),
 ];
