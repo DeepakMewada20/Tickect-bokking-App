@@ -178,3 +178,10 @@ List<TheatreModel> theatres = [
   TheatreModel(id: "3", name: "Karpagam theatres - 4K Dolby Atoms"),
   TheatreModel(id: "4", name: "KG theatres - 4K"),
 ];
+
+List<String> facilityAsset = [
+  "assets/icons/cancel.svg",
+  "assets/icons/parking.svg",
+  "assets/icons/cutlery.svg",
+  "assets/icons/rocking_horse.svg",
+];

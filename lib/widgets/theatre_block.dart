@@ -5,6 +5,7 @@ import 'package:my_movie_ticket/controllers/location_controller.dart';
 import 'package:my_movie_ticket/modal/theatre_model.dart';
 import 'package:my_movie_ticket/utils/dummy_data.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
+import 'package:my_movie_ticket/widgets/facilities_bottom_sheet.dart';
 
 class TheatreBlock extends StatelessWidget {
   final TheatreModel model;
@@ -35,15 +36,15 @@ class TheatreBlock extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  // showModalBottomSheet(
-                  //   context: context,
-                  //   isScrollControlled: true,
-                  //   backgroundColor: Colors.transparent,
-                  //   constraints: BoxConstraints(
-                  //     maxHeight: MediaQuery.of(context).size.height * 0.63,
-                  //   ),
-                  //   builder: (_) => FacilitesBottomSheet(model: model),
-                  // );
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    constraints: BoxConstraints(
+                      maxHeight: MediaQuery.of(context).size.height * 0.65,
+                    ),
+                    builder: (_) => FacilitesBottomSheet(model: model),
+                  );
                 },
                 child: Icon(
                   Icons.info_outline,
