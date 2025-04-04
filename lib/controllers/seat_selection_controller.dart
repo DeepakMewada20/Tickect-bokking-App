@@ -15,7 +15,7 @@ class SeatSelectionController extends GetxController {
   static int initialValue = -1;
   RxInt noOfSeats = initialValue.obs;
   RxInt seatType = initialValue.obs;
-  RxBool isSeatSelection = false.obs;
+  RxBool isSeatSelection = false.obs; 
   late Razorpay _razorpay;
 
   RxList selectedSeats = [].obs;

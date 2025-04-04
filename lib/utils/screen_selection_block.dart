@@ -11,7 +11,7 @@ class ScreenSelectionBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final CommonController controller = CommonController.instance;
-    return Container(
+    return SizedBox(
       height: double.maxFinite,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

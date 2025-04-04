@@ -4,6 +4,7 @@ import 'package:my_movie_ticket/modal/event_model.dart';
 import 'package:my_movie_ticket/modal/menu_modal.dart';
 import 'package:my_movie_ticket/modal/movie_modal.dart';
 import 'package:my_movie_ticket/modal/offer_modal.dart';
+import 'package:my_movie_ticket/modal/seat_layout_model.dart';
 import 'package:my_movie_ticket/modal/theatre_model.dart';
 import 'package:my_movie_ticket/utils/constants.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
@@ -190,3 +191,19 @@ List<String> screens = [
   "3D",
   "2D",
 ];
+
+final seatLayout = SeatLayoutModel(
+    rows: 10,
+    cols: 11,
+    seatTypes: [
+      {"title": "King", "price": 120.0, "status": "Filling Fast"},
+      {"title": "Queen", "price": 100.0, "status": "Available"},
+      {"title": "Jack", "price": 80.0, "status": "Available"},
+    ],
+    theatreId: 123,
+    gap: 2,
+    gapColIndex: 5,
+    isLastFilled: true,
+    rowBreaks: [5, 3, 2]);
+
+final List<int> seats = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];

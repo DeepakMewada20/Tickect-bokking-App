@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_movie_ticket/controllers/calendar_controller.dart';
 import 'package:my_movie_ticket/controllers/location_controller.dart';
+import 'package:my_movie_ticket/controllers/seat_selection_controller.dart';
 import 'package:my_movie_ticket/modal/theatre_model.dart';
+import 'package:my_movie_ticket/pages/seat_selection_screen.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
 import 'package:my_movie_ticket/widgets/facilities_bottom_sheet.dart';
 
 class TheatreBlock extends StatelessWidget {
   final TheatreModel model;
   final bool isBooking;
-  //final Function(int) onTimeTap;
+  final Function(int) onTimeTap;
+  final int TheaterIndex;
   const TheatreBlock({
+    this.TheaterIndex = 0,
     required this.model,
     this.isBooking = false,
-    //required this.onTimeTap,
+    required this.onTimeTap,
     super.key,
   });
 
@@ -56,10 +61,11 @@ class TheatreBlock extends StatelessWidget {
             height: 5,
           ),
           isBooking
-              ? const Text(
-                  // instance.format(instance.selectedMovieDate.value),
-                  "Normal Text", //afer work remove it
-                  style: TextStyle(color: Color(0xff999999)),
+              ? Text(
+                  instance.format.format(instance.selectedMovieDate.value),
+                  style: TextStyle(
+                    color: Color(0xff999999),
+                  ),
                 )
               : RichText(
                   text: TextSpan(
@@ -96,87 +102,87 @@ class TheatreBlock extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          // Obx(
-          //   () => Wrap(
-          //     runSpacing: 10,
-          //     alignment: WrapAlignment.spaceBetween,
-          //     spacing: 20,
-          //     children: List.generate(
-          //       4,
-          //       (index) {
-          //         //for dummy data
-          //         bool isSelected = index ==
-          //                 SeatSelectionController
-          //                     .instance.timeSelectedIndex.value &&
-          //             isBooking;
-          //         Color color =
-          //             index % 2 == 0 ? MyTheme.orangeColor : MyTheme.greenColor;
-          //         return GestureDetector(
-          //           onTap: () {
-          //             //to seat selection
-          //             onTimeTap(index);
-          //           },
-          //           child: AnimatedContainer(
-          //             duration: const Duration(milliseconds: 300),
-          //             decoration: BoxDecoration(
-          //               color: isSelected
-          //                   ? MyTheme.greenColor
-          //                   : const Color(0x22E5E5E5),
-          //               borderRadius: BorderRadius.circular(5),
-          //               border: Border.all(
-          //                 width: 1,
-          //                 color: isSelected
-          //                     ? MyTheme.greenColor
-          //                     : const Color(0xffE5E5E5),
-          //               ),
-          //             ),
-          //             padding: const EdgeInsets.symmetric(
-          //                 horizontal: 15, vertical: 10),
-          //             child: Text(
-          //               model.timings[index],
-          //               style:
-          //                   TextStyle(color: isSelected ? Colors.white : color),
-          //             ),
-          //           ),
-          //         );
-          //       },
-          //     ),
-          //   ),
-          // )
-          const SizedBox(
-            height: 10,
-          ),
-          Wrap(
-            runSpacing: 10,
-            spacing: 20,
-            children: List.generate(
-              model.timings.length,
-              (index) {
-                //this is timing color for text like 10:36 AM
-                Color color =
-                    index % 2 == 0 ? MyTheme.orangeColor : MyTheme.greenColor;
-                return GestureDetector(
-                  onTap: () {
-                    //to seat selection
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        color: const Color(0x22E5E5E5),
-                        borderRadius: BorderRadius.circular(7),
+          Obx(
+            () => Wrap(
+              runSpacing: 10,
+              //alignment: WrapAlignment.spaceBetween,
+              spacing: 20,
+              children: List.generate(
+                4,
+                (index) {
+                  //for dummy data
+                  bool isSelected = index ==
+                          SeatSelectionController
+                              .instance.timeSelectedIndex.value &&
+                      isBooking;
+                  Color color =
+                      index % 2 == 0 ? MyTheme.orangeColor : MyTheme.greenColor;
+                  return GestureDetector(
+                    onTap: () {
+                      //to seat selection
+                      isBooking ? onTimeTap(index) : onTimeTap(TheaterIndex);
+                    },
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 300),
+                      decoration: BoxDecoration(
+                        color: isSelected
+                            ? MyTheme.greenColor
+                            : const Color(0x22E5E5E5),
+                        borderRadius: BorderRadius.circular(5),
                         border: Border.all(
                           width: 1,
-                          color: const Color(0xffE5E5E5),
-                        )),
-                    child: Text(
-                      model.timings[index],
-                      style: TextStyle(color: color),
+                          color: isSelected
+                              ? MyTheme.greenColor
+                              : const Color(0xffE5E5E5),
+                        ),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 10),
+                      child: Text(
+                        model.timings[index],
+                        style:
+                            TextStyle(color: isSelected ? Colors.white : color),
+                      ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
-          )
+          ),
+          // const SizedBox(
+          //   height: 10,
+          // ),
+          // Wrap(
+          //   runSpacing: 10,
+          //   spacing: 20,
+          //   children: List.generate(
+          //     model.timings.length,
+          //     (index) {
+          //       //this is timing color for text like 10:36 AM
+          //       Color color =
+          //           index % 2 == 0 ? MyTheme.orangeColor : MyTheme.greenColor;
+          //       return GestureDetector(
+          //         onTap: () {
+          //           onTimeTap(index);
+          //         },
+          //         child: Container(
+          //           padding: const EdgeInsets.all(10),
+          //           decoration: BoxDecoration(
+          //               color: const Color(0x22E5E5E5),
+          //               borderRadius: BorderRadius.circular(7),
+          //               border: Border.all(
+          //                 width: 1,
+          //                 color: const Color(0xffE5E5E5),
+          //               )),
+          //           child: Text(
+          //             model.timings[index],
+          //             style: TextStyle(color: color),
+          //           ),
+          //         ),
+          //       );
+          //     },
+          //   ),
+          // )
         ],
       ),
     );

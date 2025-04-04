@@ -1,11 +1,12 @@
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class CalendarController extends GetxController {
   //calendar controller
 
   static CalendarController instance = Get.find();
   late Rx<DateTime> selectedMovieDate;
-  //final DateFormat format = DateFormat("EEEE, MMM dd, yyyy");
+  final DateFormat format = DateFormat("EEEE, MMM dd, yyyy");
   final DateTime todayDate = DateTime.now();
   List<DateTime> thisWeek = [], nextWeek = [];
 

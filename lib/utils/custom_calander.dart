@@ -61,9 +61,9 @@ class CustomCalendar extends StatelessWidget {
               8,
               (index) {
                 if (index == 0) {
-                  return SizedBox(
+                  return const SizedBox(
                     width: 40,
-                    child: const Text(
+                    child: Text(
                       "This week",
                       textAlign: TextAlign.right,
                       style: TextStyle(fontSize: 10),
@@ -120,9 +120,9 @@ class CustomCalendar extends StatelessWidget {
               8,
               (index) {
                 if (index == 0) {
-                  return SizedBox(
+                  return const SizedBox(
                     width: 40,
-                    child: const Text(
+                    child: Text(
                       "Next week",
                       textAlign: TextAlign.right,
                       style: TextStyle(fontSize: 10),

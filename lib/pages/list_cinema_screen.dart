@@ -5,8 +5,7 @@ import 'package:my_movie_ticket/controllers/calendar_controller.dart';
 import 'package:my_movie_ticket/controllers/common_controller.dart';
 import 'package:my_movie_ticket/controllers/seat_selection_controller.dart';
 import 'package:my_movie_ticket/modal/movie_modal.dart';
-import 'package:my_movie_ticket/pages/veiw_all_screen.dart';
-import 'package:my_movie_ticket/utils/custom_calander.dart';
+import 'package:my_movie_ticket/pages/seat_selection_screen.dart';
 import 'package:my_movie_ticket/utils/dummy_data.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
 import 'package:my_movie_ticket/widgets/theatre_block.dart';
@@ -171,7 +170,12 @@ class _ListCinemaScreenState extends State<ListCinemaScreen> {
               padding: EdgeInsets.only(
                   bottom: index != theatres.length - 1 ? 20 : 0),
               child: TheatreBlock(
+                TheaterIndex: index,
                 model: theatres[index],
+                onTimeTap: (index) {
+                  Get.to(() => SeatSelectionScreen(
+                      theatreModel: theatres[index], movieModel: widget.model,));
+                },
               ),
             );
           }),
@@ -228,10 +232,12 @@ class TheatreSearchDelegate extends SearchDelegate {
           padding: EdgeInsets.only(
               bottom: index != suggestionList.length - 1 ? 20 : 0),
           child: TheatreBlock(
+            TheaterIndex: index,
             model: suggestionList[index],
-            // onTimeTap: (index) {
-            //   Get.to(() => SeatSelectionScreen(theatreModel: suggestionList[index], movieModel: model));
-            // },
+            onTimeTap: (index) {
+              Get.to(() => SeatSelectionScreen(
+                  theatreModel: suggestionList[index], movieModel: model));
+            },
           ),
         );
       },
