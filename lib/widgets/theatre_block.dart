@@ -4,7 +4,6 @@ import 'package:my_movie_ticket/controllers/calendar_controller.dart';
 import 'package:my_movie_ticket/controllers/location_controller.dart';
 import 'package:my_movie_ticket/controllers/seat_selection_controller.dart';
 import 'package:my_movie_ticket/modal/theatre_model.dart';
-import 'package:my_movie_ticket/pages/seat_selection_screen.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
 import 'package:my_movie_ticket/widgets/facilities_bottom_sheet.dart';
 
@@ -63,7 +62,7 @@ class TheatreBlock extends StatelessWidget {
           isBooking
               ? Text(
                   instance.format.format(instance.selectedMovieDate.value),
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Color(0xff999999),
                   ),
                 )

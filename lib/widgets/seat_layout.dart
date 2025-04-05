@@ -11,7 +11,7 @@ import 'package:my_movie_ticket/utils/mytheme.dart';
 // ignore: must_be_immutable
 class SeatLayout extends StatelessWidget {
   final SeatLayoutModel model;
-  SeatLayout({Key? key, required this.model}) : super(key: key);
+  SeatLayout({super.key, required this.model});
   int alphabetCounter = -1;
   int seatCounter = 0;
   double amount = 0.0;
@@ -102,7 +102,7 @@ class SeatLayout extends StatelessWidget {
           ),
           Expanded(
             child: InteractiveViewer(
-              panEnabled: true,
+              panEnabled: false,
               child: ListView.builder(
                 itemCount: seatLength,
                 itemBuilder: (_, index) {
@@ -114,12 +114,13 @@ class SeatLayout extends StatelessWidget {
                           vertical: 10, horizontal: 30),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: [                        
                           Text(
                             "\u20B9 ${model.seatTypes[seatLength - index - 1]['price']} ${model.seatTypes[seatLength - index - 1]['title']}",
-                            style: const TextStyle(color: Colors.black, fontSize: 15),
+                            style: const TextStyle(
+                                color: Colors.black, fontSize: 15),
                           ),
-                          const SizedBox(
+                          const SizedBox(                 
                             height: 10,
                           ),
                           ...List.generate(
@@ -142,8 +143,8 @@ class SeatLayout extends StatelessWidget {
                                           width: 20,
                                           child: Text(
                                             rowNo,
-                                            style:
-                                                const TextStyle(color: Colors.black),
+                                            style: const TextStyle(
+                                                color: Colors.black),
                                           ),
                                         ),
                                       );
@@ -157,9 +158,9 @@ class SeatLayout extends StatelessWidget {
                                                     1) &&
                                         (row != model.rowBreaks[index] - 1 &&
                                             model.isLastFilled)) {
-                                      return Padding(
-                                        padding: const EdgeInsets.all(5.0),
-                                        child: Container(
+                                      return const Padding(
+                                        padding: EdgeInsets.all(5.0),
+                                        child: SizedBox(
                                           height: 20,
                                           width: 20,
                                         ),
@@ -175,7 +176,7 @@ class SeatLayout extends StatelessWidget {
 
                                     return mainSeatLayout(
                                         seatPrice: SeatSelectionController
-                                            .instance.seatPrice,
+                                            .instance.seatPrice.call,
                                         price: price,
                                         rowNo: rowNo);
                                   },

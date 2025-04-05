@@ -15,7 +15,7 @@ class SeatSelectionController extends GetxController {
   static int initialValue = -1;
   RxInt noOfSeats = initialValue.obs;
   RxInt seatType = initialValue.obs;
-  RxBool isSeatSelection = false.obs; 
+  RxBool isSeatSelection = false.obs;
   late Razorpay _razorpay;
 
   RxList selectedSeats = [].obs;
@@ -48,21 +48,32 @@ class SeatSelectionController extends GetxController {
     update();
   }
 
-  String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
-      length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+  String getRandomString(int length) => String.fromCharCodes(
+        Iterable.generate(
+          length,
+          (_) => _chars.codeUnitAt(
+            _rnd.nextInt(
+              _chars.length,
+            ),
+          ),
+        ),
+      );
 
   void createOrder() async {
     http.Response res = await http.post(
       Uri.parse(Constants.createOrderUrl),
       headers: {
         'content-type': 'application/json',
-        'authorization':
-            'Basic ${base64Encode(utf8.encode('${Constants.keyId}:${Constants.keySecret}'))}'
+        'authorization': 'Basic ${base64Encode(
+          utf8.encode(
+            '${Constants.keyId}:${Constants.keySecret}',
+          ),
+        )}',
       },
       body: jsonEncode({
         "amount": seatPrice * 100,
         "currency": "INR",
-        "receipt": 'recpt_${getRandomString(4)}',
+        "receipt": 'recpt_${getRandomString(5)}',
       }),
     );
 
@@ -78,15 +89,16 @@ class SeatSelectionController extends GetxController {
     _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
     _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
     _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+
     var options = {
       'key': Constants.keyId,
       'amount': seatPrice * 100, //in the smallest currency sub-unit.
-      'name': 'Find Seat',
+      'name': 'Bookkaro',
       'order_id': orderId, // Generate order_id using Orders API
       'description': 'Movie Ticket Amount',
       'timeout': 300, // in seconds
       'prefill': {
-        'contact': AuthController.instence.user!.phoneNumber ?? '9876543210',
+        'contact': AuthController.instence.user!.phoneNumber ?? '8815086850',
         'email': AuthController.instence.user!.email,
       }
     };
@@ -103,7 +115,7 @@ class SeatSelectionController extends GetxController {
   void _handlePaymentError(PaymentFailureResponse response) {
     // Do something when payment fails
     AuthController.instence
-        .getErrorSnackeBar("Payment failed : ${response.message}","");
+        .getErrorSnackeBar("Payment failed : ${response.message}", "");
   }
 
   void _handleExternalWallet(ExternalWalletResponse response) {

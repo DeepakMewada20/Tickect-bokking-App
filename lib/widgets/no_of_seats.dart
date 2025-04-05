@@ -6,7 +6,7 @@ import '../utils/mytheme.dart';
 
 class NoOfSeats extends StatelessWidget {
   final Function(int) onTap;
-  const NoOfSeats({Key? key, required this.onTap}) : super(key: key);
+  const NoOfSeats({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

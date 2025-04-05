@@ -9,7 +9,7 @@ import '../utils/dummy_data.dart';
 
 class SeatType extends StatelessWidget {
   final Function(int) onTap;
-  const SeatType({Key? key, required this.onTap}) : super(key: key);
+  const SeatType({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +75,7 @@ class SeatType extends StatelessWidget {
                         color: index ==
                                 SeatSelectionController.instance.seatType.value
                             ? Colors.white
-                            : Color(0xff999999),
+                            : const Color(0xff999999),
                         fontSize: 16,
                       ),
                     ),

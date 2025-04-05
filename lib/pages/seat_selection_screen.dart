@@ -17,10 +17,10 @@ class SeatSelectionScreen extends StatefulWidget {
   final TheatreModel theatreModel;
   final MovieModel movieModel;
   const SeatSelectionScreen({
-    Key? key,
+    super.key,
     required this.theatreModel,
     required this.movieModel,
-  }) : super(key: key);
+  });
 
   @override
   State<SeatSelectionScreen> createState() => _SeatSelectionScreenState();
@@ -72,12 +72,12 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
               const SizedBox(
                 height: 5,
               ),
-              NoOfSeats(onTap: SeatSelectionController.instance.noOfSeats),
+              NoOfSeats(onTap: SeatSelectionController.instance.noOfSeats.call),
               const SizedBox(
                 height: 20,
               ),
               SeatType(
-                onTap: SeatSelectionController.instance.seatType,
+                onTap: SeatSelectionController.instance.seatType.call,
               ),
             ],
           ),
@@ -103,7 +103,8 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
                 return;
               }
               SeatSelectionController.instance.createOrder();
-            } else {
+            } 
+            else {
               if (SeatSelectionController.instance.noOfSeats.value <= 0) {
                 AuthController.instence
                     .getErrorSnackBarNew("Please select number of seats");
@@ -166,16 +167,16 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar:
-          bottomBar(toggle: SeatSelectionController.instance.isSeatSelection),
+          bottomBar(toggle: SeatSelectionController.instance.isSeatSelection.call),
       backgroundColor: const Color(0xFFF5F5FA),
       appBar:
-          myAppBar(toggle: SeatSelectionController.instance.isSeatSelection),
+          myAppBar(toggle: SeatSelectionController.instance.isSeatSelection.call),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TheatreBlock(
             model: widget.theatreModel,
-            onTimeTap: SeatSelectionController.instance.timeSelectedIndex,
+            onTimeTap: SeatSelectionController.instance.timeSelectedIndex.call,
             isBooking: true,
           ),
           const SizedBox(
