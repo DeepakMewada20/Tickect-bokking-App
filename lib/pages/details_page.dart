@@ -224,11 +224,9 @@ class DetailsPage extends StatelessWidget {
               background: Hero(
                 tag: "${modal.title}",
                 child: Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage(
-                        "assets/images/movie_banner.png",
-                      ),
+                      image: AssetImage(modal.bannerUrl),
                       fit: BoxFit.cover,
                     ),
                   ),

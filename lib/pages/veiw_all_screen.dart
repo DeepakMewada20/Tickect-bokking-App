@@ -4,6 +4,7 @@ import 'package:my_movie_ticket/controllers/common_controller.dart';
 import 'package:my_movie_ticket/controllers/location_controller.dart';
 import 'package:my_movie_ticket/modal/menu_modal.dart';
 import 'package:get/get.dart';
+import 'package:my_movie_ticket/pages/details_page.dart';
 import 'package:my_movie_ticket/utils/dummy_data.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
 import 'package:my_movie_ticket/widgets/item_block.dart';
@@ -116,7 +117,10 @@ class _VeiwAllScreenState extends State<VeiwAllScreen> {
                               higet: 200,
                               width: 180,
                               onTap: (modal) {
-                                print(modal.title);
+                                manu.name.contains('Movie')
+                                    ? Get.to(() => DetailsPage(),
+                                        arguments: movies[index])
+                                    : () {};
                               },
                             );
                           },
@@ -146,7 +150,7 @@ class MySearchDelegete extends SearchDelegate<String> {
       higet: 200,
       width: 180,
       onTap: (modal) {
-        print(modal.title);
+        isMovie == true ? Get.to(() => DetailsPage(), arguments: modal) : () {};
       },
     );
   }

@@ -56,7 +56,7 @@ List<MovieModel> movies = [
     description: "description",
     actors: ["actor a", "actor b"],
     like: 84,
-    bannerUrl: "assets/movie/black-panther-banner.jpg",
+    bannerUrl: "assets/movie/black-panther-banner.png",
   ),
   MovieModel(
     title: "Bigil",
