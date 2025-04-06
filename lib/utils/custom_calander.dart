@@ -7,6 +7,7 @@ import '../controllers/auth_controller.dart';
 import '../controllers/calendar_controller.dart';
 import '../utils/mytheme.dart';
 
+// ignore: must_be_immutable
 class CustomCalendar extends StatelessWidget {
   CustomCalendar({super.key});
   final todayDate = DateTime.now();

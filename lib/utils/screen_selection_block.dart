@@ -4,6 +4,7 @@ import 'package:my_movie_ticket/controllers/common_controller.dart';
 import 'package:my_movie_ticket/utils/dummy_data.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
 
+// ignore: must_be_immutable
 class ScreenSelectionBlock extends StatelessWidget {
   Function(String) onScreenSelect;
   ScreenSelectionBlock({required this.onScreenSelect, super.key});
