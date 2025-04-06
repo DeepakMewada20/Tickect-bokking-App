@@ -85,19 +85,12 @@ flutter:
     # - assets/icons/running.svg
     # - assets/icons/flag.svg
     # - assets/icons/pyramid.svg
-    - assets/movie/gabbar.png
-    - assets/movie/movie1.png
-    - assets/movie/movie2.png
-    - assets/movie/movie3.png
-    - assets/movie/movie4.png
-    - assets/movie/pizza.png
-    - assets/events/event1.png
-    - assets/events/event2.png
-    - assets/events/event3.png
-    - assets/events/event4.png
-    - assets/plays/play1.png
+    - assets/movie/
+    - assets/movie/black-panther-banner.png
+    - assets/events/
     - assets/plays/
-    - assets/images/movie_banner.png
+    - assets/plays/
+    - assets/images/
     # - assets/icons/gift_red.svg
     # - assets/icons/gift_green.svg
     - assets/actors/

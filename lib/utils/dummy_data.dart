@@ -52,6 +52,13 @@ List<OfferModel> offers = [
 ];
 List<MovieModel> movies = [
   MovieModel(
+    title: "Black Panther",
+    description: "description",
+    actors: ["actor a", "actor b"],
+    like: 84,
+    bannerUrl: "assets/movie/black-panther-banner.jpg",
+  ),
+  MovieModel(
     title: "Bigil",
     description: "description",
     actors: ["actor a", "actor b"],
