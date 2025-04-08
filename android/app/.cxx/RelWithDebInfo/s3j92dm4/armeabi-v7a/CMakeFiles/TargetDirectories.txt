@@ -1,0 +1,2 @@
+/home/deepakmewada/MyProgrames/my_movie_ticket/android/app/.cxx/RelWithDebInfo/s3j92dm4/armeabi-v7a/CMakeFiles/edit_cache.dir
+/home/deepakmewada/MyProgrames/my_movie_ticket/android/app/.cxx/RelWithDebInfo/s3j92dm4/armeabi-v7a/CMakeFiles/rebuild_cache.dir

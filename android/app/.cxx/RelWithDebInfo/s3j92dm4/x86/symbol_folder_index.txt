@@ -1,0 +1,1 @@
+/home/deepakmewada/MyProgrames/my_movie_ticket/build/app/intermediates/cxx/RelWithDebInfo/s3j92dm4/obj/x86
