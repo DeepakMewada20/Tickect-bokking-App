@@ -4,9 +4,6 @@ import 'package:get/get.dart';
 import 'package:my_movie_ticket/controllers/seat_selection_controller.dart';
 import 'package:my_movie_ticket/modal/seat_layout_model.dart';
 import 'package:my_movie_ticket/utils/mytheme.dart';
-// import 'package:movieticketbookingapp/controllers/seat_selection_controller.dart';
-// import 'package:movieticketbookingapp/model/seat_layout_model.dart';
-// import 'package:movieticketbookingapp/utils/mytheme.dart';
 
 // ignore: must_be_immutable
 class SeatLayout extends StatelessWidget {
