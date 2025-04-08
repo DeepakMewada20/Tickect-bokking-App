@@ -60,7 +60,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -75,27 +75,15 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    # - assets/icons/splash_icon.svg
-    # - assets/icons/google.svg
-    # - assets/icons/facebook.svg
     - assets/images/slider_banner.png
-    # - assets/icons/film.svg
-    # - assets/icons/spotlights.svg
-    # - assets/icons/theater_masks.svg
-    # - assets/icons/running.svg
-    # - assets/icons/flag.svg
-    # - assets/icons/pyramid.svg
     - assets/movie/
     - assets/movie/black-panther-banner.png
     - assets/events/
     - assets/plays/
     - assets/plays/
     - assets/images/
-    # - assets/icons/gift_red.svg
-    # - assets/icons/gift_green.svg
     - assets/actors/
     - assets/icons/
-  #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
